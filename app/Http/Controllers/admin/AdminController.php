@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\CheckInOut;
 use App\Models\Coupon;
@@ -15,16 +16,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-        public function dashboard()
+    public function dashboard()
     {
-        $coupons = Coupon::all();
-        $categories =Category::all();
-        $networks =Network::all();
-        $users = User::all();
+        $coupons = Coupon::count();
+        $categories =Category::count();
+        $networks =Network::count();
+        $users = User::count();
         $user =User::where('id', '!=', Auth::id())->get();
-        $stores =Stores::all();
-        $languge = language ::all();
-        return view('admin.dashboard',compact('stores','coupons','categories','networks','users','user','languge'));
+        $stores =Stores::count();
+        $languge = language ::count();
+        $blogs = Blog::count();
+        return view('admin.dashboard',compact('stores','coupons','categories','networks','users','user','languge','blogs'));
     }
     public function index()
     {
@@ -133,6 +135,7 @@ class AdminController extends Controller
 
         return view('admin.user.index', compact('users'));
     }
+
 
 
 

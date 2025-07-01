@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
-  public function dashboard()
+    public function dashboard()
     {
         $users =User::where('id', '!=', Auth::id())->get();
         return view('employee.dashboard', compact('users'));
