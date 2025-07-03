@@ -89,7 +89,7 @@
                                     <button type="submit" onclick=" return confirm('are you sure to delete  this ') " class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                                           <a class="btn btn-success text-white btn-sm"
-                                href="{{ route('admin.blog.show', ['blog' => Str::slug($blog->slug)]) }}"
+                                href="{{ route('admin.blog.show', ['slug' => Str::slug($blog->slug)]) }}"
                                 rel="noopener noreferrer">
                                 <i class="ri-eye-line"></i>
                             </a>

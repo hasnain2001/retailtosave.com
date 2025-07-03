@@ -59,17 +59,22 @@
                      alt="{{ $blog->name }}">
             </div>
 
-            <!-- Category and Description -->
+            <!-- Category and Store -->
             <div class="row mb-4">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card bg-light">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-tag me-2"></i>Category</h5>
-                            <p class="card-text">{{ $blog->category->name ?? 'N/A' }}</p>
+                        <div class="card-body d-flex flex-wrap align-items-center gap-4">
+                            <div>
+                                <h5 class="card-title mb-1"><i class="fas fa-tag me-2"></i>Category</h5>
+                                <p class="card-text mb-0">{{ $blog->category->name ?? 'N/A' }}</p>
+                            </div>
+                            <div>
+                                <h5 class="card-title mb-1"><i class="fas fa-store me-2"></i>Store</h5>
+                                <p class="card-text mb-0">{{ $blog->store->name ?? 'N/A' }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Blog Content -->

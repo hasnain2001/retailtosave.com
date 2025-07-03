@@ -9,16 +9,17 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Route::get('register', [RegisteredUserController::class, 'create'])
+    //     ->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+    // Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    //     ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
@@ -57,3 +58,16 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+   Route::middleware(['auth'])->group(function () {
+        Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile', 'edit')->name('profile.edit');
+        Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
+        Route::post('/profile/image', 'updateImage')->name('profile.image.update');
+        });
+    });
+
+
+
+Route::get('/login', function () {return view('auth.login');})->middleware('guest')->name('login');
+Route::get('/register', function () {return view('auth.register');})->middleware('guest')->name('register');

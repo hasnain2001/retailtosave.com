@@ -386,7 +386,20 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+
+                                        <div class="form-group">
+                                            <label for="language_id">Language</label>
+                                            <select name="language_id" id="language_id" class="form-select">
+                                                <option value="" disabled selected>Select a language</option>
+                                                @foreach($languages as $language)
+                                                    <option value="{{ $language->id }}"
+                                                            {{ old('language_id', $coupon->language_id) == $language->id ? 'selected' : '' }}>
+                                                        {{ $language->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                 </div>
 
 
                                 </div>

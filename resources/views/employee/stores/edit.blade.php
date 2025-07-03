@@ -164,17 +164,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                     <div class="mb-3">
                                         <label for="network" class="form-label">Affiliate Network <span class="text-danger">*</span></label>
-                                        <select name="network" id="network" class="form-select" >
-                                            <option value="" disabled>-- Select Network --</option>
+                                        <select name="network_id" id="network" class="form-select" required>
+                                            <option value="" disabled {{ !$stores->network_id ? 'selected' : '' }}>-- Select Network --</option>
                                             @foreach ($networks as $network)
-                                                <option value="{{ $network->title }}" {{ old('network', $stores->network) == $network->title ? 'selected' : '' }}>
+                                                <option value="{{ $network->id }}" {{ $stores->network_id == $network->id ? 'selected' : '' }}>
                                                     {{ $network->title }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
+
 
                                     <div class="mb-3">
                                         <label for="category_id" class="form-label">Category <span class="text-danger">*</span></label>

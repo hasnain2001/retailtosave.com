@@ -31,6 +31,7 @@ class Stores extends Model
         'updated_at',
         'deleted_at',
         'content',
+        
 
     ];
     protected $dates = [

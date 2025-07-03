@@ -15,34 +15,34 @@
         </nav>
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row align-items-center mb-3">
-                    <div class="col-md-8">
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="display-5 me-3 text-primary">
+                <div class="row align-items-center mb-3 flex-column flex-md-row">
+                    <div class="col-12 col-md-8 mb-3 mb-md-0">
+                        <div class="d-flex align-items-center flex-wrap gap-3">
+                            <span class="display-5 text-primary">
                                 <i class="fas fa-tags"></i>
                             </span>
                             <div>
-                                <h2 class="mb-0 fw-bold">Coupons</h2>
-                                <div class="mt-1">
-                                    <span class="badge bg-dark me-2">
+                                <h2 class="mb-1 fw-bold">Coupons</h2>
+                                <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
+                                    <img class="img-thumbnail me-2" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:70px; height:70px; object-fit:cover;">
+                                    <span class="badge bg-dark">
                                         <i class="fas fa-store"></i> {{ $store->name }}
                                     </span>
-                                    <span class="badge bg-info text-dark me-2">
-                                        <i class="fas fa-network-wired"></i> {{ $store->network }}
+                                    <span class="badge bg-info text-dark">
+                                        <i class="fas fa-network-wired"></i> {{ $store->network->title }}
                                     </span>
-                                    <span class="badge bg-secondary me-2">
+                                    <span class="badge bg-secondary">
                                         <i class="fas fa-list"></i> {{ $store->category->name ?? 'N/A' }}
                                     </span>
                                     <span class="badge bg-warning text-dark">
                                         <i class="fas fa-language"></i> {{ $store->language->name ?? 'N/A' }}
                                     </span>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex justify-content-md-end justify-content-start mt-3 mt-md-0">
-                        <a href="{{ route('employee.coupon.create') }}" class="btn btn-primary btn-lg shadow-sm">
+                    <div class="col-12 col-md-4 d-flex justify-content-md-end justify-content-start">
+                        <a href="{{ route('employee.coupon.create') }}" class="btn btn-primary btn-lg shadow-sm w-100 w-md-auto">
                             <i class="fas fa-plus-circle"></i> Add New Coupon
                         </a>
                     </div>

@@ -127,19 +127,16 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label for="network">Affiliate Network <span class="text-danger">*</span></label>
-                                        <select name="network" id="network" class="form-control">
-                                            <option value="" disabled {{ old('network') ? '' : 'selected' }}>--Select Network--</option>
+                                     <div class="mb-3">
+                                        <label for="network_id" class="form-label">Affiliate Network <span class="text-danger">*</span></label>
+                                        <select name="network_id" id="network_id" class="form-select" >
+                                            <option value="" disabled selected>-- Select network --</option>
                                             @foreach ($networks as $network)
-                                            <option value="{{ $network->title }}" {{ old('network') == $network->title ? 'selected' : '' }}>
-                                                {{ $network->title }}
-                                            </option>
+                                                <option value="{{ $network->id }}" data-language="{{ $network->network_id ?? '' }}" {{ old('network_id') == $network->id ? 'selected' : '' }}>
+                                                    {{ $network->title }}
+                                                </option>
                                             @endforeach
                                         </select>
-                                        @error('network')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
                                     </div>
 
                                 <div class="mb-3">

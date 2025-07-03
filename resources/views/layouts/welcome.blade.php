@@ -2,16 +2,15 @@
 header("X-Robots-Tag:index, follow");
 ?>
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" data-layout-mode="detached">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-layout-mode="detached">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', 'Default Title')</title>
+    <title>{{ config('app.name') }} @yield('title', 'Default Title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description', 'Default description')">
     <meta name="author" content="Coderthemes">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="title" content="@yield('title')">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords', 'default, keywords')">
     <meta name="author" content="@yield('author', 'default, author')">
@@ -29,7 +28,7 @@ header("X-Robots-Tag:index, follow");
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">

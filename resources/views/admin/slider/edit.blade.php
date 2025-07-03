@@ -54,16 +54,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="button_text" class="font-weight-bold">Button Text</label>
-                                <input type="text" class="form-control border-primary" name="button_text" id="button_text"
-                                       value="{{ old('button_text', $slider->button_text) }}" placeholder="Enter button text">
-                                @error('button_text')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
+                       
                     </div>
 
                     <div class="row">

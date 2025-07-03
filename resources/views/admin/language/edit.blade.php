@@ -87,12 +87,12 @@
                                 <div class="form-group mb-0">
                                     <label class="font-weight-bold">Status <span class="text-danger">*</span></label>
                                     <div class="custom-control custom-radio mt-2">
-                                        <input type="radio" class="custom-control-input" name="status" id="enable" {{ $language->status == '1' ? 'checked' : '' }} value="enable">
-                                        <label class="custom-control-label" for="enable">Enable</label>
+                                        <input type="radio" class="custom-control-input" name="status" id="1" {{ $language->status == '1' ? 'checked' : '' }} value="1">
+                                        <label class="custom-control-label" for="1">Enable</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="status" id="disable" {{ $language->status == '0' ? 'checked' : '' }} value="disable">
-                                        <label class="custom-control-label" for="disable">Disable</label>
+                                        <input type="radio" class="custom-control-input" name="status" id="0" {{ $language->status == '0' ? 'checked' : '' }} value="0">
+                                        <label class="custom-control-label" for="0">Disable</label>
                                     </div>
                                 </div>
                             </div>

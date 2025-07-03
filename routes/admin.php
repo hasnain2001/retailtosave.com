@@ -89,7 +89,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/blog/edit/{blog}', 'edit')->name('blog.edit');
     Route::put('/blog/update/{blog}', 'update')->name('blog.update');
     Route::delete('/blog/delete/{blog}',  'destroy')->name('blog.destroy');
-    Route::get('/blog/{blog:slug}', 'show')->name('blog.show');
+    Route::get('/Blog/{slug}', 'show')->name('blog.show');
     Route::post('/blog/deleteSelected', 'deleteSelected')->name('blog.deleteSelected');
     });
 
@@ -119,6 +119,9 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::post('/slider/bulk-delete', 'bulkDelete')->name('slider.bulkDelete');
     Route::post('/slider/bulk-update', 'bulkUpdate')->name('slider.bulkUpdate');
     Route::post('/slider/bulk-status-update', 'bulkStatusUpdate')->name('slider.bulkStatusUpdate');
+       // Additional routes from enhancements
+    Route::patch('/{slider}/toggle-status', [SliderController::class, 'toggleStatus'])->name('slider.toggle-status');
+    Route::get('/export', [SliderController::class, 'export'])->name('slider.export');
 
 });
 

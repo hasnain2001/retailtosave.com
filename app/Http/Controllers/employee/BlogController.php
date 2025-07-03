@@ -23,7 +23,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('category','language')->orderBy('created_at', 'desc')->get();
+        $blogs = Blog::with('category','language','store')->orderBy('created_at', 'desc')->get();
         return view('employee.blog.index', compact('blogs'));
     }
 
@@ -50,11 +50,11 @@ class BlogController extends Controller
             'title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:255',
             'meta_keyword' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'content' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'status' => 'nullable|boolean',
-            'language_id' => 'nullable|exists:languages,id',
+            'status' => 'required|boolean',
+            'language_id' => 'required|exists:languages,id',
             'store_id' => 'nullable|exists:stores,id',
 
         ]);
@@ -100,7 +100,6 @@ class BlogController extends Controller
         if (!$blog) {
             return redirect('404');
         }
-
         // Get store$store where store_id matches the store's ID
         $store = Stores::with('user')
                     ->where('category_id', $blog->category_id)  // Changed from $title to $store->id

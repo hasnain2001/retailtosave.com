@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
        <!-- App favicon -->
-   <link rel="shortcut icon" href=" {{ asset('assets/images/favicon.ico') }}" />
+   <link rel="shortcut icon" href=" {{ asset('assets/images/favicon.png') }}" />
     <!-- Theme Config Js -->
 		<script src="{{ asset('assets/js/head.js') }}"></script>
 

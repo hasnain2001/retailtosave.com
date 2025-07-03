@@ -25,7 +25,7 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table id="advanced-datatable" class="table table-hover dt-responsive nowrap w-100">
+                    <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>

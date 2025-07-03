@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Network;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NetworkController extends Controller
 {
@@ -13,7 +14,7 @@ class NetworkController extends Controller
      */
     public function index()
     {
-        $networks = Network::all();
+        $networks = Network::select('created_at','updated_at','title','id')->get();
         return view('employee.network.index', compact('networks'));
     }
 
@@ -32,13 +33,12 @@ class NetworkController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-
         ]);
 
 
         $network = new Network();
+        $network->user_id = Auth::id();
         $network->title = $request->title;
-
         $network->save();
 
         return redirect()->route('employee.network.index')->with('success', 'Network created successfully.');
@@ -70,7 +70,7 @@ class NetworkController extends Controller
         ]);
 
         $network->title = $request->title;
-
+        $network->updated_id = Auth::id();
         $network->save();
 
         return redirect()->route('employee.network.index')->with('success', 'Network updated successfully.');

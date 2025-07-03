@@ -23,7 +23,7 @@ class StoresController extends Controller
     public function index(  )
     {
 
-        $stores = Stores::with('language')->select('id','slug','name','category_id','image','created_at','status','network','language_id')
+        $stores = Stores::with('language','network')->select('id','slug','name','category_id','image','created_at','status','network_id','language_id')
         ->orderBy('created_at','desc')
         ->get();
           return view('employee.stores.index', compact('stores', ));
@@ -73,7 +73,7 @@ class StoresController extends Controller
             'meta_description' => 'nullable|string|max:255',
             'language_id' => 'required|integer',
             'category_id' => 'required|integer',
-            'network' => 'required|string|max:255',
+             'network_id' => 'required|integer',
             'destination_url' => 'required|url',
             'content' => 'nullable|string',
             'about' => 'nullable|string',
@@ -94,7 +94,7 @@ class StoresController extends Controller
         $store->user_id = Auth::id();
         $store->category_id = $request->category_id;
         $store->name = $request->name;
-        $store->network = $request->network;
+        $store->network_id = $request->network_id;
         $store->top_store = $request->top_store;
         $store->destination_url = $request->destination_url;
         $store->slug = $request->slug;
@@ -153,17 +153,17 @@ class StoresController extends Controller
     public function update(Request $request, Stores $stores)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:stores,slug,' . $stores->id,
-            'status' => 'required|boolean',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'title' => 'nullable|string|max:255',
-            'meta_keyword' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:255',
-            'language_id' => 'required|integer',
-            'category_id' => 'required|integer',
-            'network' => 'required|string|max:255',
-            'destination_url' => 'required|url',
+           'name' => 'required|string|max:255',
+           'slug' => 'required|string|max:255|unique:stores,slug,' . $stores->id,
+           'status' => 'required|boolean',
+           'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+           'title' => 'nullable|string|max:255',
+           'meta_keyword' => 'nullable|string|max:255',
+           'meta_description' => 'nullable|string|max:255',
+           'language_id' => 'required|integer',
+           'category_id' => 'required|integer',
+           'network_id' => 'required|integer',
+           'destination_url' => 'required|url',
             'content' => 'nullable|string',
             'about' => 'nullable|string',
             'url' => 'nullable|url',
@@ -189,7 +189,7 @@ class StoresController extends Controller
         $stores->name = $request->name;
         $stores->description = $request->description;
         $stores->about = $request->about;
-        $stores->network = $request->network;
+        $stores->network_id = $request->network_id;
         $stores->top_store = $request->top_store;
         $stores->url = $request->url;
         $stores->destination_url = $request->destination_url;

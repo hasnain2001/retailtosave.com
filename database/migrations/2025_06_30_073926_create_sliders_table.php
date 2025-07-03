@@ -16,7 +16,7 @@ return new class extends Migration
                 $table->foreignId('language_id')->nullable()->constrained('languages')->nullOnDelete();
                 $table->string('name')->nullable();
                 $table->string('title')->nullable();
-                $table->string('subtitle')->nullable();
+                $table->text('subtitle')->nullable();
                 $table->string('image')->nullable();
                 $table->string('link')->nullable();
                 $table->boolean('status')->default(1);

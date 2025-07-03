@@ -211,7 +211,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 text-end">
-                                    <h3 class="mb-1 text-dark fw-bold"><span class="counter" data-target="{{$languge}}">0</span></h3>
+                                    <h3 class="mb-1 text-dark fw-bold"><span class="counter" data-target="{{$blogs}}">0</span></h3>
                                     <p class="text-muted mb-0">Total blogs</p>
                                     <a href="{{route('admin.blog.index')}}" class="stretched-link text-decoration-none">
                                         <small class="text-warning">View Details <i class="fas fa-arrow-right ms-1"></i></small>

@@ -22,12 +22,17 @@
                             <span class="display-5 me-3 text-primary">
                                 <i class="fas fa-tags"></i>
                             </span>
+                              <a href="{{ route('admin.store.edit', $store->id) }}"
+                                               class="btn btn-sm btn-outline-primary rounded-3 px-2"
+                                               data-bs-toggle="tooltip"
+                                               title="Edit Store">
+                                                <i class="mdi mdi-pencil"></i>
+                                            </a>
                             <div>
                                 <h2 class="mb-0 fw-bold">Coupons</h2>
                                 <div class="mt-1">
-                                    <span class="badge  me-2">
-                                        <i class="fas fa-store"></i> {{ $store->name }}
-                                    </span>
+                                       <img class="img-thumbnail me-2" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:70px; height:70px; object-fit:cover;" loading="lazy">
+
                                     <span class="badge bg-info text-dark me-2">
                                         <i class="fas fa-network-wired"></i> {{ $store->network->title }}
                                     </span>
@@ -71,7 +76,13 @@
                 <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
                     <i class="fas fa-check-circle fa-2x me-3"></i>
                     <div>
-                     <p class="mb-0">Success! {{ session('success') }}</p>
+                    <p class="mb-0">
+                        <strong>Success!</strong>
+                        {{ session('success') }}
+                        @if(isset($store->name))
+                            <span class="text-primary">({{ $store->name }})</span>
+                        @endif
+                    </p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -92,14 +103,11 @@
                                         <th>Type</th>
                                         <th>Status</th>
                                         <th>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-user"></i>
-                                                <span class="ms-2">Created By</span>
-                                            </div>
+                                         <span class="text-muted small">created By</span>
                                         <span class="text-muted small">Updated By</span>
                                         </th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
+                                        <th> <span class="text-muted small">created At</span>
+                                        <span class="text-muted small">Updated At</span></th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -160,21 +168,26 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="small text-muted">
-                                                <i class="far fa-calendar-alt"></i> {{ $coupon->created_at->setTimezone('Asia/Karachi')->format('M d, Y') }}
-                                                <div class="text-primary">
-                                                    <i class="far fa-clock"></i> {{ $coupon->created_at->setTimezone('Asia/Karachi')->format('h:i A') }}
+                                            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2">
+                                                <div class="small text-muted">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    {{ $coupon->created_at->setTimezone('Asia/Karachi')->format('M d, Y') }}
+                                                    <span class="text-primary ms-1">
+                                                        <i class="far fa-clock"></i>
+                                                        {{ $coupon->created_at->setTimezone('Asia/Karachi')->format('h:i A') }}
+                                                    </span>
+                                                </div>
+                                                <div class="small text-muted">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    {{ $coupon->updated_at->setTimezone('Asia/Karachi')->format('M d, Y') }}
+                                                    <span class="text-warning ms-1">
+                                                        <i class="far fa-clock"></i>
+                                                        {{ $coupon->updated_at->setTimezone('Asia/Karachi')->format('h:i A') }}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="small text-muted">
-                                                <i class="far fa-calendar-alt"></i> {{ $coupon->updated_at->setTimezone('Asia/Karachi')->format('M d, Y') }}
-                                                <div class="text-warning">
-                                                    <i class="far fa-clock"></i> {{ $coupon->updated_at->setTimezone('Asia/Karachi')->format('h:i A') }}
-                                                </div>
-                                            </div>
-                                        </td>
+
                                         <td>
                                             <div class="btn-group btn-group-sm">
                                                 <a href="{{ route('admin.coupon.edit', $coupon->id) }}"

@@ -146,7 +146,7 @@ class StoresController extends Controller
             'description' => 'nullable|string',
             'language_id' => 'required|exists:languages,id',
             'category_id' => 'required|exists:categories,id',
-            'network' => 'nullable|string|max:255',
+            'network_id' => 'required|exists:categories,id',
             'top_store' => 'nullable|boolean',
             'destination_url' => 'nullable|url',
             'url' => 'required|url',
@@ -174,7 +174,7 @@ class StoresController extends Controller
         $stores->description = $request->description;
         $stores->about = $request->about;
         $stores->category_id = $request->category_id;
-        $stores->network = $request->network;
+        $stores->network_id = $request->network_id;
         $stores->top_store = $request->top_store;
         $stores->url = $request->url;
         $stores->destination_url = $request->destination_url;

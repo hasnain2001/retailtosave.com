@@ -65,7 +65,7 @@
                                     </div>
                                  <div class="mb-3">
                                     <label for="language" class="form-label">Language</label>
-                                    <select name="language_id" id="language" class="form-select">
+                                    <select name="language_id" id="language" class="form-select" required>
                                         <option value="">-- Select Language --</option>
                                         @foreach($languages as $language)
                                             <option value="{{ $language->id }}">{{ $language->name }}</option>

@@ -132,7 +132,7 @@
                                             <option value="" disabled selected>-- Select network --</option>
                                             @foreach ($networks as $network)
                                                 <option value="{{ $network->id }}" data-language="{{ $network->network_id ?? '' }}" {{ old('network_id') == $network->id ? 'selected' : '' }}>
-                                                    {{ $network->name }}
+                                                    {{ $network->title }}
                                                 </option>
                                             @endforeach
                                         </select>

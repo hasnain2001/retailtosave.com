@@ -25,13 +25,14 @@
 
                 </div>
             @endif
-            <table id="SearchTable" class="table table-bordered table-hover table-striped">
+            <table id="basic-datatable" class="table table-bordered table-hover table-striped">
 
                     <thead>
                         <tr>
                             <th>id</th>
                             <th>Name  </th>
                             <th>Category</th>
+                            <th>store</th>
                             <th>Status</th>
                              <th>image</th>
                              <th>lang</th>
@@ -49,12 +50,9 @@
                         <tr>
 
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $blog->name }}
-
-                            </td>
-                            <td>{{ $blog->category->name ?? Null }}
-
-                            </td>
+                            <td><small>{{ $blog->name }}</small></td>
+                            <td><small>{{ $blog->category->name ?? Null }}</small></td>
+                            <td><small>{{ $blog->store->name ?? Null }}</small></td>
                             <td>
                                 @if ($blog->status == '1')
                                 <span class="text-success">Active</span>

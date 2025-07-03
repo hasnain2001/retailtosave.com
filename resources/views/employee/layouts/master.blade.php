@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
 <!-- App favicon -->
-<link rel="shortcut icon" href=" {{ asset('assets/images/favicon.ico') }}" />
+<link rel="shortcut icon" href=" {{ asset('assets/images/favicon.png') }}" />
 
 <!-- Plugins css -->
 <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css')  }}" rel="stylesheet" type="text/css" />

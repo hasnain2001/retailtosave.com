@@ -36,12 +36,12 @@
                             <tr>
                                 <th><input type="checkbox" id="selectAll"></th>
                                 <th>id</th>
+                                <th>image</th>
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Network</th>
                                 <th>lang</th>
                                 <th>Status</th>
-                                <th>image</th>
                                 <th>Action / view</th>
                                 <th>edit coupon</th>
                             </tr>
@@ -51,9 +51,11 @@
                             <tr>
                                 <td><input type="checkbox" class="select-checkbox" name="ids[]" value="{{ $store->id }}"></td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $store->name }}</td>
-                                <td>{{ $store->category->name ?? Null }}</td>
-                                <td>{{ $store->network }}</td>
+                                  <td><img class="img-thumbnail" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:50px;" loading="lazy">
+                                </td>
+                                <td><small>{{ $store->name }}</small></td>
+                                <td><small>{{ $store->category->name ?? Null }}</small></td>
+                                <td>{{ $store->network->title }}</td>
                                 <td>
                                     @if(isset($store->language) && !empty($store->language->name))
                                         <span class="badge bg-light text-dark">{{ $store->language->name }}</span>
@@ -68,8 +70,7 @@
                                         <span class="text-danger">Inactive</span>
                                     @endif
                                 </td>
-                                <td><img class="img-thumbnail" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:80px;"></td>
-                                {{-- <td>{{ $store->created_at->setTimezone('Asia/Karachi')->format('l, F j, Y h:i A')}}</td> --}}
+
                                 <td>
                                     <a href="{{ route('employee.store.edit', $store->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     <form action="{{ route('employee.store.destroy', $store->id) }}" method="POST" style="display:inline;">
