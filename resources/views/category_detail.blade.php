@@ -8,7 +8,7 @@
 @section('keywords')
     {!! $category->meta_keyword !!}
 @endsection
-@section('main')
+@push('styles')
 <style>
     /* Category Header Styling */
     .category-header {
@@ -72,6 +72,8 @@
         margin-top: 10px;
     }
 </style>
+@endpush
+@section('main')
 
 <div class="container mt-4">
     <nav aria-label="breadcrumb" class="mb-3">
@@ -79,14 +81,14 @@
             <li class="breadcrumb-item">
                 <a href="/" class="text-decoration-none text-primary fw-semibold">Home</a>
             </li>
-            <li class="breadcrumb-item active fw-bold" aria-current="page">{{ $category->title }}</li>
+            <li class="breadcrumb-item active fw-bold" aria-current="page">{{ $category->name }}</li>
         </ol>
     </nav>
 
     <div class="category-header text-center">
-        @if ($category->category_image)
+        @if ($category->image)
             <div class="overlay">
-                <h1 class="text-uppercase">{{ $category->title }}</h1>
+                <h1 class="text-uppercase">{{ $category->name }}</h1>
             </div>
         @else
             <div class="fallback-image d-flex flex-column align-items-center justify-content-center">
@@ -138,40 +140,39 @@
     </div>
 
 </section>
-    {{-- <section>
+    <section>
         <div class="row card-list g-4 mt-3">
             <div class="col-md-8">
                 <section class="blog">
                   <h1>Shopping Hacks & Savings Tips & Tricks</h1>
                   <div class="row">
-                    @foreach ($blogs as $blog)
+                    @foreach ($relatedblogs as $blog)
                     @php
                     $blogurl = $blog->slug
-                        ? route('blog-details', ['slug' => Str::slug($blog->slug)])
+                        ? route('blog.detail', ['slug' => Str::slug($blog->slug)])
                         : '#';
                     @endphp
                     <div class="col-md-6 mb-4">
                       <div class="card shadow-sm h-100 d-flex flex-column">
                         <a href="{{ $blogurl }}">
-                        <img src="{{ asset($blog->category_image) }}" class="card-img-top" alt="Blog Post Image">
+                        <img src="{{ asset('uploads/blogs/' . $blog->image) }}" class="card-img-top" alt="Blog Post Image">
                       </a>
                         <div class="card-body d-flex flex-column">
                           <div class="blog-text mb-3">
                             <h5 class="blog-title">{{ $blog->title }}</h5>
                           </div>
                           <div class="mt-auto">
-                            <a href="{{ $blogurl }}" class="btn btn-primary rounded-pill w-100">Read More</a>
+                            <a href="{{ $blogurl }}" class="btn btn-danger rounded-pill w-100">Read More</a>
                           </div>
                         </div>
                       </div>
                     </div>
                     @endforeach
                   </div>
-                  {{ $blogs->links('vendor.pagination.custom') }}
-                </section>
+                 </section>
               </div>
         </div>
-    </section> --}}
+    </section>
 
 </div>
 @endsection

@@ -138,13 +138,20 @@ class BlogController extends Controller
             'store_id' => 'nullable|exists:stores,id',
 
         ]);
-       if ($request->hasFile('image')) {
+      if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($blog->image) {
+            $oldImagePath = public_path('uploads/blogs/' . $blog->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+            }
             $image = $request->file('image');
             $storeNameSlug = Str::slug($request->name);
             $imageName = $storeNameSlug . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/blogs'), $imageName);
         } else {
-            $imageName = null;
+            $imageName = $blog->image;
         }
         $request->merge(['image' => $imageName]);
 
@@ -161,7 +168,7 @@ class BlogController extends Controller
         $blog->status = $request->input('status');
         $blog->image = $imageName;
         if ($blog->save()) {
-            return redirect()->route('employee.blog.show',['blog' => Str::slug($blog->slug)])->with('success', 'Blog updated successfully.');
+            return redirect()->route('employee.blog.show',['slug' => Str::slug($blog->slug)])->with('success', 'Blog updated successfully.');
         } else {
             return redirect()->back()->with('error', 'Failed to update blog.');
         }

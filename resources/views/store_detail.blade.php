@@ -3,50 +3,139 @@
 @section('description') {{ $store->meta_description }} @endsection
 @section('keywords') {{ $store->meta_keyword }} @endsection
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/store_detail.css') }}">
-       <style>
-            @media (max-width: 576px) {
-            .store-header {
-                min-height: 200px !important;
-                padding: 1.5rem 0.5rem !important;
-            }
-            .store-logo-container {
-                width: 60px !important;
-                height: 60px !important;
-            }
-            .store-logo {
-                width: 60px !important;
-                height: 60px !important;
-            }
-            .store-header h1 {
-                font-size: 1.25rem !important;
-            }
-            .store-header .lead {
-                font-size: 1rem !important;
-            }
-            }
-            @media (max-width: 576px) {
-                .content-text {
-                    font-size: 0.97rem !important;
-                    word-break: break-word;
-                }
-            }
-            @media (max-width: 576px) {
-            .breadcrumb {
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                white-space: nowrap !important;
-                font-size: 0.95rem;
-            }
-            .breadcrumb-item {
-                flex-shrink: 0 !important;
-            }
-            }
-        </style>
+  <link rel="stylesheet" href="{{ asset('assets/css/store_detail.css') }}">
+  <style>
+    /* Custom Styles for Enhanced Coupon Modal */
+    .bg-gradient-danger {
+        background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+    }
+
+    .bg-danger-soft {
+        background-color: rgba(255, 77, 77, 0.1);
+    }
+
+    .logo-container {
+        width: 90px;
+        height: 90px;
+        padding: 5px;
+        background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+        border-radius: 50%;
+    }
+
+    .coupon-container {
+        border: 2px dashed #ff4d4d;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .coupon-cutout {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+    }
+
+    .coupon-cutout.top {
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .coupon-cutout.bottom {
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .coupon-code-text {
+        letter-spacing: 2px;
+        color: #ff1a1a !important;
+    }
+
+    .copy-btn {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .divider-line {
+        height: 1px;
+        background: linear-gradient(to right, transparent, #ddd, transparent);
+        flex: 1;
+    }
+
+    .ribbon {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        z-index: 1;
+        overflow: hidden;
+        width: 150px;
+        height: 150px;
+        text-align: right;
+    }
+
+    .ribbon span {
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 30px;
+        transform: rotate(45deg);
+        width: 200px;
+        display: block;
+        position: absolute;
+        top: 35px;
+        right: -40px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .store-link-btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+    .store-link-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+    }
+
+    .bounce {
+        animation: bounce 2s infinite;
+    }
+
+    .pulse-animation {
+        animation: pulse 2s infinite;
+    }
+
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-15px);}
+        60% {transform: translateY(-7px);}
+    }
+
+    @keyframes pulse {
+        0% {transform: rotate(45deg) scale(1);}
+        50% {transform: rotate(45deg) scale(1.05);}
+        100% {transform: rotate(45deg) scale(1);}
+    }
+  </style>
 @endpush
 @section('main')
-
-    <main class="container ">
+ <main class="container ">
         @php
         $codeCount = 0;
         $dealCount = 0;
@@ -75,7 +164,7 @@
                 </li>
             @endif
             <li class="breadcrumb-item flex-shrink-0">
-                <a href="{{ route('stores') }}" class="text-decoration-none text-dark">
+                <a href="{{ route('stores', ['lang' => app()->getLocale()]) }}" class="text-decoration-none text-dark">
                 <i class="fas fa-store me-2"></i>@lang('nav.stores')
                 </a>
             </li>
@@ -87,7 +176,7 @@
 
 
         <!-- Store Header with Icons -->
-        <div class="store-header bg-primary bg-gradient p-4 p-md-5 mb-4 mb-lg-5 text-center text-white rounded-4 position-relative overflow-hidden" >
+        <div class="store-header bg-danger bg-gradient p-2 p-md-5 mb-4 mb-lg-2 text-center text-white rounded-4 position-relative overflow-hidden" >
             <div class="position-absolute top-0 end-0 opacity-10 d-none d-sm-block">
             <i class="fas fa-certificate fa-7x"></i>
             </div>
@@ -115,7 +204,7 @@
                     <i class="fas fa-star {{ $i <= 4 ? 'text-warning' : 'text-white-50' }}"></i>
                     @endfor
                 </div>
-                <span class="text-white small small-md">{{ $totalCount }} @lang('message.Offers')</span>
+                <span class="text-white small small-md">{{ $totalCount }} Offers</span>
                 </div>
             </div>
             </div>
@@ -132,20 +221,20 @@
                         </div>
                         <h4 class="alert-heading fw-bold">@lang('message.Oops! No Coupons Available')</h4>
                         <p class="mb-4">@lang('message.Dont worry, you can still explore amazing deals from our partnered brands.')</p>
-                        <a href="{{ route('stores') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                        <a href="{{ route('stores') }}" class="btn btn-danger btn-lg rounded-pill px-4">
                             <i class="fas fa-store me-2"></i>@lang('message.Explore Brands')
                         </a>
                     </div>
                 @else
                     <!-- Filter Buttons (Mobile First) -->
                     <div class="d-flex flex-wrap gap-2 mb-4">
-                        <a href="{{ url()->current() }}" class="btn btn-outline-primary rounded-pill">
+                        <a href="{{ url()->current() }}" class="btn btn-outline-danger rounded-pill">
                             <i class="fas fa-list me-2"></i>All ({{ $totalCount }})
                         </a>
-                        <a href="{{ url()->current() }}?sort=codes" class="btn btn-outline-primary rounded-pill">
+                        <a href="{{ url()->current() }}?sort=codes" class="btn btn-outline-danger rounded-pill">
                             <i class="fas fa-ticket-alt me-2"></i>@lang('message.Codes') ({{ $codeCount }})
                         </a>
-                        <a href="{{ url()->current() }}?sort=deals" class="btn btn-outline-primary rounded-pill">
+                        <a href="{{ url()->current() }}?sort=deals" class="btn btn-outline-danger rounded-pill">
                             <i class="fas fa-percentage me-2"></i>@lang('message.Deals') ({{ $dealCount }})
                         </a>
                     </div>
@@ -163,13 +252,14 @@
                                         <!-- Coupon Content -->
                                         <div class="flex-grow-1">
                                             <!-- Coupon Title -->
-                                            <h5 class="card-title fw-bold mb-3">
+                                            <h6 class="card-title fw-bold mb-3">
                                                 <i class="fas {{ $coupon->code ? 'fa-ticket-alt text-dark' : 'fa-percentage text-success' }} me-2"></i>
                                                 {{ $coupon->name }}
-                                            </h5>
+                                            </h6>
 
                                             <!-- Coupon Description -->
                                             @if($coupon->description)
+                                              <hr>
                                                 <div class="mb-3">
                                                     <p class="small text-muted mb-1">
                                                         <i class="fas fa-info-circle me-1"></i> Details:
@@ -177,6 +267,7 @@
                                                     <p class="small">{{ $coupon->description }}</p>
                                                 </div>
                                             @endif
+                                            <hr>
 
                                             <!-- Expiry & Usage -->
                                             <div class="d-flex justify-content-between small mb-3">
@@ -191,17 +282,17 @@
                                         </div>
 
                                         <!-- Action Button -->
-                                        <div class="mt-auto">
+                                        <div class="mt-auto d-grid gap-2">
                                             @if ($coupon->code)
-                                                <button class=" btn-code w-100 reveal-code"
+                                                <button class="get-code-btn "
                                                     onclick="handleRevealCode(event, {{ $coupon->id }}, '{{ $coupon->code }}', '{{ $coupon->name }}', '{{ asset('uploads/stores/' . $coupon->store->image) }}', '{{ $coupon->store->destination_url }}', '{{ $coupon->store->name }}')">
-                                                    <i class="fas fa-ticket-alt me-2"></i> @lang('welcome.Get Code')
+                                                    <i class="fas fa-ticket-alt me-2"></i> Get Code
                                                 </button>
                                             @else
                                                 <a href="{{ $coupon->store->destination_url }}" target="_blank"
-                                                   class=" btn-deal w-100"
+                                                   class="deal-btn w-100"
                                                    onclick="updateClickCount({{ $coupon->id }})">
-                                                    <i class="fas fa-shopping-bag me-2"></i> @lang('welcome.View Deal')
+                                                    <i class="fas fa-shopping-bag me-2"></i>View Deal
                                                 </a>
                                             @endif
                                         </div>
@@ -231,7 +322,7 @@
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
                     <!-- Store Summary -->
-                    <div class="card-header bg-primary text-white py-3">
+                    <div class="card-header bg-danger text-white py-3">
                         <h5 class="mb-0">
                             <i class="fas fa-chart-pie me-2"></i> Store Summary
                         </h5>
@@ -242,7 +333,7 @@
                                 <span class="text-muted">
                                     <i class="fas fa-ticket-alt text-dark me-2"></i> Coupon Codes
                                 </span>
-                                <span class="badge bg-primary rounded-pill">{{ $codeCount }}</span>
+                                <span class="badge bg-danger rounded-pill">{{ $codeCount }}</span>
                             </li>
                             <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                 <span class="text-muted">
@@ -267,16 +358,14 @@
                     </div>
                     <div class="card-body">
                         <div class="d-grid gap-2">
-                            <a href="{{ $store->destination_url }}" target="_blank" class="btn btn-outline-primary text-start">
+                            <a href="{{ $store->destination_url }}" target="_blank" class="btn btn-outline-danger text-start">
                                 <i class="fas fa-external-link-alt me-2"></i> Visit Store
                             </a>
-                            <a href="{{ route('stores') }}" class="btn btn-outline-secondary text-start">
+                            <a href="{{ route('stores', ['lang' => app()->getLocale()]) }}" class="btn btn-outline-secondary text-start">
                                 <i class="fas fa-store me-2"></i> All Stores
                             </a>
                             @if($store->category)
-                                <a href="{{ route('category.detail', ['slug' => Str::slug($store->category->slug)]) }}" class="btn btn-outline-secondary text-start">
-                                    <i class="fas fa-tag me-2"></i> {{ $store->category->name }} Category
-                                </a>
+                                <a href="{{ route('category.detail', ['slug' => Str::slug($store->category->slug)]) }}" class="btn btn-outline-secondary text-start btn-sm"><i class="fas fa-tag me-2"></i><small class="text-nowrap">category:{{ $store->category->name }}</small></a>
                             @endif
                         </div>
                     </div>
@@ -339,42 +428,90 @@
                             </p>
                         @endif
                     </div>
+                                        <!-- Related Stores -->
+                    <div class="card-header bg-light py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-store-alt me-2"></i> store Blogs
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        @if($relatedblogs->isNotEmpty())
+                            <ul class="list-unstyled mb-0">
+                                @foreach ($relatedblogs as $related)
+                                    <li class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <img src="{{ asset('uploads/blogs/' . $related->image) }}" alt="{{ $related->name }}" class="rounded-circle shadow-sm" style="width: 40px; height: 40px; object-fit: cover;">
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('blog.detail', ['slug' => Str::slug($related->slug)]) }}" class="fw-semibold text-dark text-decoration-none">
+                                                {{ $related->name }}
+                                            </a>
+                                            @if($related->tagline)
+                                                <div class="small text-muted">{{ $related->tagline }}</div>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="small text-muted mb-0">
+                                <i class="fas fa-info-circle me-2"></i> No related stores found.
+                            </p>
+                        @endif
+                    </div>
 
 
                 </div>
             </div>
         </div>
-    </main>
-
-    <!-- Coupon Code Modal -->
+ </main>
+   <!-- Enhanced Coupon Code Modal -->
     <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 shadow border-0">
-                <!-- Modal Header -->
-                <div class="modal-header position-relative bg-primary text-white border-0 rounded-top-4">
-                    <div class="position-absolute top-0 start-50 translate-middle mt-n4">
-                        <span class="badge bg-danger px-3 py-2 shadow-sm">
-                            <i class="fas fa-bolt me-1"></i> LIMITED TIME
-                        </span>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content rounded-4 shadow border-0 overflow-hidden">
+                <!-- Ribbon Banner -->
+                <div class="ribbon ribbon-top-right">
+                    <span class="bg-danger pulse-animation">
+                        <i class="fas fa-bolt me-1"></i> LIMITED OFFER
+                    </span>
                 </div>
+
+                <!-- Modal Header -->
+                <div class="modal-header position-relative bg-gradient-danger text-white border-0">
+                    <div class="w-100 text-center">
+                        <h5 class="modal-title fw-bold" id="couponModalLabel">EXCLUSIVE DISCOUNT</h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
                 <!-- Modal Body -->
                 <div class="modal-body text-center py-4 px-5">
-                    <!-- Logo -->
+                    <!-- Animated Logo -->
                     <div class="mb-4">
-                        <img src="" alt="Brand Logo" id="storeImage" class="img-fluid rounded-circle shadow border-4 border-light" style="width: 80px; height: 80px; object-fit: contain;">
+                        <div class="logo-container mx-auto">
+                            <img src="" alt="Brand Logo" id="storeImage" class="img-fluid rounded-circle shadow border-4 border-white bounce">
+                        </div>
                     </div>
-                    <!-- Title -->
-                    <h5 class="fw-bold text-dark mb-3" id="couponName"></h5>
+
+                    <!-- Title with decorative elements -->
+                    <div class="position-relative mb-4">
+                        <div class="divider-line"></div>
+                        <h5 class="fw-bold text-dark mb-0 px-3 d-inline-block bg-white position-relative" id="couponName"></h5>
+                        <div class="divider-line"></div>
+                    </div>
+
                     <!-- Coupon Code Section -->
-                    <div class="bg-light rounded-3 p-3 mb-4">
+                    <div class="coupon-container bg-light rounded-3 p-2 mb-4 position-relative">
+                        <div class="coupon-cutout top"></div>
+                        <div class="coupon-cutout bottom"></div>
+
                         <p class="small text-muted mb-2">
-                            <i class="fas fa-tag me-1"></i> YOUR COUPON CODE
+                            <i class="fas fa-tag me-1"></i> YOUR EXCLUSIVE CODE
                         </p>
-                        <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
-                            <span id="couponCode" class="fw-bold fs-4 text-dark"></span>
-                            <button class="btn btn-sm btn-outline-primary" onclick="copyToClipboard()">
+                        <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+                            <span id="couponCode" class="fw-bold fs-3 text-dark coupon-code-text text-nowrap"></span>
+                            <button class="btn btn-sm btn-danger rounded-circle copy-btn" onclick="copyToClipboard()" data-bs-toggle="tooltip" title="Copy Code">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -382,23 +519,40 @@
                             <i class="fas fa-check-circle me-1"></i> Copied to clipboard!
                         </p>
                     </div>
+
+                    <!-- Expiry Timer -->
+                    <div class="bg-danger-soft rounded-3 p-2 mb-4">
+                        <p class="small text-danger mb-1 fw-bold">
+                            <i class="fas fa-clock me-1"></i> OFFER EXPIRES IN:
+                            <span class="countdown-timer">15:00</span>
+                        </p>
+                    </div>
+
                     <!-- Instructions -->
                     <p class="small text-muted mb-0">
-                        <i class="fas fa-info-circle me-1"></i> Use this code at checkout on
+                        <i class="fas fa-info-circle me-1"></i> Apply this code at checkout on
                         <a href="" id="couponUrl" class="text-decoration-none fw-semibold text-dark"></a>
                     </p>
                 </div>
+
                 <!-- Modal Footer -->
-                <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
-                    <a href="" id="storeLink" class="btn-deal rounded-pill px-4">
-                        <i class="fas fa-external-link-alt me-2"></i> Go to Store
+                <div class="modal-footer bg-light rounded-bottom-4 justify-content-center border-0 pt-0">
+                    <a href="" id="storeLink" class="btn btn-danger btn-lg rounded-pill px-4 shadow-sm store-link-btn">
+                        <i class="fas fa-external-link-alt me-2"></i> REDEEM NOW
                     </a>
                 </div>
+
+                <!-- Confetti decoration -->
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
             </div>
         </div>
     </div>
 
-    @push('scripts')
+
+@endsection
+@push('scripts')
     <script>
         let couponModal = null;
 
@@ -464,7 +618,4 @@
             });
         }
     </script>
-    @endpush
-
-
-@endsection
+@endpush

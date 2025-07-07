@@ -192,86 +192,86 @@
 
 @endsection
 @section('scripts')
-<script>
+    <script>
 
-           document.addEventListener('DOMContentLoaded', function() {
-        const categorySelect = document.getElementById('category_id');
-        const languageSelect = document.getElementById('language_id');
+            document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('category_id');
+            const languageSelect = document.getElementById('language_id');
 
-        categorySelect.addEventListener('change', function() {
-            const selectedOption = categorySelect.options[categorySelect.selectedIndex];
-            const languageId = selectedOption.getAttribute('data-language');
-            if (languageId) {
-                for (let i = 0; i < languageSelect.options.length; i++) {
-                    if (languageSelect.options[i].value == languageId) {
-                        languageSelect.selectedIndex = i;
-                        break;
+            categorySelect.addEventListener('change', function() {
+                const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+                const languageId = selectedOption.getAttribute('data-language');
+                if (languageId) {
+                    for (let i = 0; i < languageSelect.options.length; i++) {
+                        if (languageSelect.options[i].value == languageId) {
+                            languageSelect.selectedIndex = i;
+                            break;
+                        }
                     }
+                }
+            });
+        });
+        // Auto-generate slug and website URL from name while typing
+        document.getElementById('name').addEventListener('input', function() {
+            const name = this.value.trim();
+            const slugField = document.getElementById('slug');
+            const urlField = document.getElementById('url');
+
+            if (name) {
+                // Generate slug from name
+                const generatedSlug = name.toLowerCase()
+                    .replace(/[^\w\s-]/g, '')  // Remove special chars
+                    .replace(/\s+/g, ' ')      // Replace spaces with -
+                    .replace(/--+/g, ' ');     // Replace multiple - with single -
+
+                // Generate website URL (basic version)
+                const currentUrl = window.location.origin;
+                const generatedUrl = currentUrl + '/blog/' + generatedSlug;
+
+                // Only update slug if the slug field is empty or matches the previously generated slug
+                if (!slugField.value || slugField.value === slugField.dataset.previousGenerated) {
+                    slugField.value = generatedSlug;
+                    slugField.dataset.previousGenerated = generatedSlug;
+                    checkSlugUniqueness(generatedSlug);
+                }
+
+                // Only update URL if the URL field is empty or matches the previously generated URL
+                if (!urlField.value || urlField.value === urlField.dataset.previousGenerated) {
+                    urlField.value = generatedUrl;
+                    urlField.dataset.previousGenerated = generatedUrl;
                 }
             }
         });
-    });
-    // Auto-generate slug and website URL from name while typing
-    document.getElementById('name').addEventListener('input', function() {
-        const name = this.value.trim();
-        const slugField = document.getElementById('slug');
-        const urlField = document.getElementById('url');
 
-        if (name) {
-            // Generate slug from name
-            const generatedSlug = name.toLowerCase()
-                .replace(/[^\w\s-]/g, '')  // Remove special chars
-                .replace(/\s+/g, ' ')      // Replace spaces with -
-                .replace(/--+/g, ' ');     // Replace multiple - with single -
+        // Check slug when user leaves the name field
+        document.getElementById('name').addEventListener('blur', function() {
+            const slugField = document.getElementById('slug');
+            const urlField = document.getElementById('url');
 
-            // Generate website URL (basic version)
-            const currentUrl = window.location.origin;
-            const generatedUrl = currentUrl + '/blog/' + generatedSlug;
-
-            // Only update slug if the slug field is empty or matches the previously generated slug
-            if (!slugField.value || slugField.value === slugField.dataset.previousGenerated) {
-                slugField.value = generatedSlug;
-                slugField.dataset.previousGenerated = generatedSlug;
-                checkSlugUniqueness(generatedSlug);
+            if (slugField.value) {
+                checkSlugUniqueness(slugField.value);
             }
-
-            // Only update URL if the URL field is empty or matches the previously generated URL
-            if (!urlField.value || urlField.value === urlField.dataset.previousGenerated) {
-                urlField.value = generatedUrl;
-                urlField.dataset.previousGenerated = generatedUrl;
-            }
-        }
-    });
-
-    // Check slug when user leaves the name field
-    document.getElementById('name').addEventListener('blur', function() {
-        const slugField = document.getElementById('slug');
-        const urlField = document.getElementById('url');
-
-        if (slugField.value) {
-            checkSlugUniqueness(slugField.value);
-        }
-    });
-
-    // Function to check slug uniqueness
-    function checkSlugUniqueness(slug) {
-        const slugMessage = document.getElementById('slug-message');
-        if (slug.length < 3) {
-            slugMessage.textContent = 'Slug is too short';
-            slugMessage.style.color = 'red';
-        } else {
-            slugMessage.textContent = 'Slug looks good!';
-            slugMessage.style.color = 'green';
-        }
-    }
-
-    // Initialize CKEditor
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            // Editor configuration
-        })
-        .catch(error => {
-            console.error(error);
         });
-</script>
+
+        // Function to check slug uniqueness
+        function checkSlugUniqueness(slug) {
+            const slugMessage = document.getElementById('slug-message');
+            if (slug.length < 3) {
+                slugMessage.textContent = 'Slug is too short';
+                slugMessage.style.color = 'red';
+            } else {
+                slugMessage.textContent = 'Slug looks good!';
+                slugMessage.style.color = 'green';
+            }
+        }
+
+        // Initialize CKEditor
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // Editor configuration
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

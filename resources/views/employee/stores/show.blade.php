@@ -24,7 +24,7 @@
                             <div>
                                 <h2 class="mb-1 fw-bold">Coupons</h2>
                                 <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
-                                    <img class="img-thumbnail me-2" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:70px; height:70px; object-fit:cover;">
+                                    <img class="img-thumbnail me-2" src="{{ asset('uploads/stores/' . $store->image) }}" style="width:70px; height:40px; object-fit:cover;">
                                     <span class="badge bg-dark">
                                         <i class="fas fa-store"></i> {{ $store->name }}
                                     </span>
@@ -52,11 +52,7 @@
 
         <section class="content">
             <div class="container-fluid">
-                <span class="badge bg-gradient bg-warning text-dark shadow-sm fs-6 px-3 py-2 d-inline-flex align-items-center">
-                    <i class="fas fa-ticket-alt me-1"></i>
-                    <span class="fw-bold">Coupons:</span>
-                    <span class="ms-1">{{ $coupons->count() ?? 'N/A' }}</span>
-                </span>
+
                 @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
                     <i class="fas fa-check-circle fa-2x me-3"></i>
@@ -78,7 +74,6 @@
                                         <th width="30px">#</th>
                                         <th width="30px">Sort</th>
                                         <th>Coupon Name</th>
-                                        <th>Store</th>
                                         <th>Type</th>
                                         <th>Status</th>
                                         <th>Created At</th>
@@ -98,12 +93,7 @@
                                             <div class="text-muted small">Code: {{ $coupon->code }}</div>
                                             @endif
                                         </td>
-                                        <td>
-                                            <span class="badge bg-black">
-                                                {{ $coupon->store->name }}
-                                            </span>
-                                        </td>
-                                        <td>
+                                       <td>
                                             @if ($coupon->code)
                                                 <span class="badge bg-primary">
                                                     <i class="fas fa-code"></i> Code
@@ -168,15 +158,11 @@
                             </table>
                         </div>
                     </div>
-{{--
-                    <div class="card-footer clearfix">
-                        <div class="float-right">
-                            <div class="d-inline-block mr-2">
-                                Showing <strong>{{ $coupons->firstItem() }}</strong> to <strong>{{ $coupons->lastItem() }}</strong> of <strong>{{ $coupons->total() }}</strong> entries
-                            </div>
-                            {{ $coupons->links() }}
-                        </div>
-                    </div> --}}
+      <span class="badge bg-gradient bg-warning text-dark shadow-sm fs-6 px-3 py-2 d-inline-flex align-items-center">
+                    <i class="fas fa-ticket-alt me-1"></i>
+                    <span class="fw-bold">Coupons:</span>
+                    <span class="ms-1">{{ $coupons->count() ?? 'N/A' }}</span>
+                </span>
                 </div>
             </div>
         </section>

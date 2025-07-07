@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white pt-5 pb-4">
+<footer class="bg-dark text-white pt-5 pb-4 text-capitalize">
   <div class="container text-md-left">
     <div class="row text-md-left">
 
@@ -11,19 +11,19 @@
       <!-- Quick Links -->
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
-        <p><a href="#" class="text-white text-decoration-none">Home</a></p>
-        <p><a href="#" class="text-white text-decoration-none">All Stores</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Categories</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Blog</a></p>
+        <p><a href="{{ url(app()->getlocale().'/') }}" class="text-white text-decoration-none">Home</a></p>
+        <p><a href="{{ route('stores' ,['lang'=> app()->getlocale()]) }}" class="text-white text-decoration-none">All Stores</a></p>
+        <p><a href="{{ route('category' ,['lang'=> app()->getlocale()]) }}" class="text-white text-decoration-none">Categories</a></p>
+        <p><a href="{{ route('blog' ,['lang'=> app()->getlocale()]) }}" class="text-white text-decoration-none">Blog</a></p>
       </div>
 
       <!-- Help Links -->
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Support</h5>
-        <p><a href="#" class="text-white text-decoration-none">FAQs</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Contact Us</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Privacy Policy</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></p>
+        <p><a href="{{ route('imprint', ['lang' => app()->getLocale()]) }}" class="text-white text-decoration-none">imprint</a></p>
+        <p><a href="{{ route('contact', ['lang' => app()->getLocale()]) }}" class="text-white text-decoration-none">Contact Us</a></p>
+        <p><a href="{{ route('privacy', ['lang' => app()->getLocale()]) }}" class="text-white text-decoration-none">Privacy Policy</a></p>
+        <p><a href="{{ route('terms', ['lang' => app()->getLocale()]) }}" class="text-white text-decoration-none">Terms & Conditions</a></p>
       </div>
 
       <!-- Contact Info -->

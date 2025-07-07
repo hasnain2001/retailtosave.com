@@ -17,33 +17,33 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-  public function index(Request $request)
-{
-    $query = Slider::with('language')
-        ->orderBy('sort_order', 'asc');
+    public function index(Request $request)
+    {
+        $query = Slider::with('language')
+            ->orderBy('sort_order', 'asc');
 
-    // Status filter
-    if ($request->has('status')) {
-        $status = $request->status === 'active' ? 1 : 0;
-        $query->where('status', $status);
+        // Status filter
+        if ($request->has('status')) {
+            $status = $request->status === 'active' ? 1 : 0;
+            $query->where('status', $status);
+        }
+
+        // Language filter
+        if ($request->has('language')) {
+            $query->whereHas('language', function($q) use ($request) {
+                $q->where('code', $request->language);
+            });
+        }
+
+        // Get all languages for filter dropdown
+        $languages = Language::all();
+
+        // Paginate results (15 items per page by default)
+        $sliders = $query->paginate($request->per_page ?? 15)
+            ->appends($request->query());
+
+        return view('admin.slider.index', compact('sliders', 'languages'));
     }
-
-    // Language filter
-    if ($request->has('language')) {
-        $query->whereHas('language', function($q) use ($request) {
-            $q->where('code', $request->language);
-        });
-    }
-
-    // Get all languages for filter dropdown
-    $languages = Language::all();
-
-    // Paginate results (15 items per page by default)
-    $sliders = $query->paginate($request->per_page ?? 15)
-        ->appends($request->query());
-
-    return view('admin.slider.index', compact('sliders', 'languages'));
-}
 
     /**
      * Show the form for creating a new resource.

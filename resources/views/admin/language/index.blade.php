@@ -87,7 +87,11 @@
 
                                                 <td>
                                                     <a href="{{ route('admin.language.edit', $language->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('admin.language.destroy', $language->id) }}" onclick="return confirm('Are you sure you want to delete this!')" class="btn btn-danger btn-sm">Delete</a>
+                                                              <form action="{{ route('admin.language.destroy', $language->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick=" return confirm('are you sure to delete  this ') " class="btn btn-danger btn-sm">Delete</button>
+                                               </form>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -127,18 +127,17 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-primary mb-3">Store & Settings</h5>
                                       <div class="mb-3">
-                                <label for="store_id" class="form-label">Store <span class="text-danger">*</span></label>
-                       <select name="store_id" id="store_id" class="form-select" onchange="updateDestinationAndLanguage()" required>
-    <option value="" disabled {{ old('store_id') ? '' : 'selected' }}>-- Select Store --</option>
-    @foreach($stores as $store)
-        <option value="{{ $store->id }}"
-                data-url="{{ $store->destination_url }}"
-                data-language-id="{{ $store->language_id }}"
-                {{ old('store_id') == $store->id ? 'selected' : '' }}>
-            {{ $store->slug }}
-        </option>
-    @endforeach
-</select>
+                                    <label for="store_id" class="form-label">Store <span class="text-danger">*</span></label>
+                        <select name="store_id" id="store_id" class="form-select" onchange="updateDestinationAndLanguage()" required>
+                                <option value="" disabled {{ old('store_id') ? '' : 'selected' }}>-- Select Store --</option>
+                                @foreach($stores as $store)
+                                    <option value="{{ $store->id }}"
+                                            data-language-id="{{ $store->language_id }}"
+                                            {{ old('store_id') == $store->id ? 'selected' : '' }}>
+                                        {{ $store->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             </div>
                             <div class="mb-3">
                                 <label for="language_id" class="form-label">Language <span class="text-danger">*</span></label>
