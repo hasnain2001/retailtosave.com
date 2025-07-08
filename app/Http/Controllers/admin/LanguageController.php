@@ -55,7 +55,7 @@ class LanguageController extends Controller
         $language->flag = $flagName;
         $language->save();
 
-        return redirect()->route('admin.language.index');
+        return redirect()->route('admin.language.index')->with('success', 'language created succesfully');
     }
 
     /**
@@ -108,7 +108,7 @@ class LanguageController extends Controller
 
         $language->save();
 
-        return redirect()->route('admin.language.index');
+        return redirect()->route('admin.language.index')->with('success', 'language updaed successfully');
     }
 
     /**

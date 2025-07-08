@@ -6,7 +6,7 @@
 @section('author', 'john doe')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+
 @endpush
 
 @section('main')

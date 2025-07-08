@@ -14,19 +14,16 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="content">
-            <div class="container-fluid">
-                @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                    <strong>Success!</strong> {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert" style="font-size: 1.1rem; background: linear-gradient(90deg, #d4fc79 0%, #96e6a1 100%); color: #155724;">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-check-circle me-2" style="font-size: 1.5rem;"></i>
+                                        <div>
+                                            <strong>Success!</strong> {{ session('success') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -36,6 +33,11 @@
                 </ul>
             </div>
         @endif
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">

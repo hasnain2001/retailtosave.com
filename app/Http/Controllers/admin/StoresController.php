@@ -53,7 +53,7 @@ class StoresController extends Controller
             'meta_description' => 'nullable|string|max:255',
             'content' => 'nullable|string',
             'about' => 'nullable|string',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'language_id' => 'required|exists:languages,id',
             'category_id' => 'required|exists:categories,id',
             'network_id' => 'nullable|exists:networks,id',

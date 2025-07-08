@@ -4,8 +4,10 @@ use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchConroller;
 use App\Http\Middleware\Localization;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Middleware\SetLocale;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,18 +18,17 @@ Route::get('/login', function () {return view('auth.login');})->middleware('gues
 Route::get('/register', function () {return view('auth.register');})->middleware('guest')->name('register');
 
   Route::middleware([Localization::class])->group(function () {
-    Route::group(['prefix' => '{lang?}',], function () {
+    Route::group(['prefix' => '{lang}',], function () {
     Route::get('/imprint', function () {return view('imprint');})->name('imprint');
     Route::get('/privacy', function () { return view('privacy'); })->name('privacy');
     Route::get('/terms', function () { return view('terms'); })->name('terms');
     Route::get('/about', function () { return view('about'); })->name('about');
     Route::get('/contact',[ContactController::class, 'index'])->name('contact');
         });
+             });
     Route::controller(ContactController::class)->group(function () {
         Route::post('/contact', 'store')->name('contact.store');
     });
-
-             });
   Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
 
@@ -49,6 +50,10 @@ Route::get('/register', function () {return view('auth.register');})->middleware
         Route::get('/{lang}/blog/{slug}', 'blog_detail')->name('blog-details.withLang');
        });
       });
+   Route::controller(SearchConroller::class)->group(function () {
+            Route::get('/Search/Store', 'search')->name('search');
+            Route::get('/Search/Stores', 'searchResults')->name('search_results');
+     });
     Route::controller(CouponController::class)->group(function () {
         Route::post('/update-clicks', 'updateClicks')->name('update.clicks');
         Route::get('/clicks/{couponId}',  'openCoupon')->name('open.coupon');

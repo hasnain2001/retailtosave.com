@@ -125,7 +125,7 @@
 <div class="main_content gradient-bg py-2">
     <div class="container">
         <!-- Title -->
-        <h1 class="section-title">Best Discounts For Every Category</h1>
+        <h1 class="section-title">@lang('message.Best Discounts For Every Category')</h1>
 
         <!-- Categories Grid -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -153,12 +153,12 @@
                                         @forelse ($category->stores as $store)
                                             <li>{{ $store->name }}</li>
                                         @empty
-                                            <li>No stores available</li>
+                                            <li>@lang('message.No related stores found.')</li>
                                         @endforelse
                                     </ul>
                                     <a href="{{ route('category.detail', ['slug' => Str::slug($category->slug)]) }}"
                                        class="view-more-link">
-                                        View more &raquo;
+                                      @lang('message. View more') &raquo;
                                     </a>
                                 </div>
                             </div>

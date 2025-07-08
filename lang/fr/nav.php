@@ -3,16 +3,18 @@ return [
     // nav //
     'home' => 'Accueil',
     'contact' => 'Contactez-nous',
-    'blogs' => 'blogs',
+    'blogs' => 'bloguer',
     'stores' => 'magasins',
     'cateories' => 'catégories',
+    'Coupons' => 'Coupons',
+    'deal' => 'offres',
     'Popular-Categories' => 'Catégories populaires',
     'Featured' => 'En vedette',
     'New-Arrivals' => 'Nouveautés',
     'Special-Offers' => 'Offres spéciales',
     'Dashboard' => 'Tableau de bord',
     'Login' => 'Connexion',
-
+    'Search here' => 'Recherchez des coupons, des offres dans les magasins...',
     // footer //
     'Info Links' => 'Liens Utiles',
     'about' => 'À propos',
@@ -20,7 +22,6 @@ return [
     'Terms of Service' => 'Conditions d\'Utilisation',
     'Imprint' => 'Mentions Légales',
     'Quick Links' => 'Liens Rapides',
-    'Coupons' => 'Coupons',
-    'Company Name. All rights reserved' => 'Nom de l\'Entreprise. Tous droits réservés',
-     'Search here' => 'Rechercher ici',
+    'Company Name. All rights reserved' => 'retailtosave.com. Tous droits réservés',
+    'about-f' =>'Découvrez les meilleurs coupons, offres exclusives et remises de vos boutiques en ligne préférées.',
 ];

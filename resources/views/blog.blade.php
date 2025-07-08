@@ -8,8 +8,8 @@
 @section('main')
 <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-5 fw-bold text-dark mb-3">Our Blog</h1>
-        <p class="lead text-muted">Discover the latest insights, tips, and news.</p>
+        <h1 class="display-5 fw-bold text-dark mb-3">@lang('message.Our Blog')</h1>
+        <p class="lead text-muted">@lang('message.Discover the latest insights, tips, and news.')</p>
     </div>
 
     <div class="row g-4">

@@ -274,8 +274,8 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
-            <h1>Exclusive Coupon Codes</h1>
-            <p class="lead">Save money with our verified discount codes for your favorite online stores</p>
+            <h1>@lang('message.Exclusive Coupon Codes')</h1>
+            <p class="lead">@lang('message.Save money with our verified discount codes for your favorite online stores')</p>
         </div>
     </div>
 
@@ -292,7 +292,7 @@
                                 <img src="{{ asset('uploads/stores/' . $coupon->store->image) }}" class="store-logo img-fluid" alt="{{ $coupon->store->name }} Logo" loading="lazy">
                             </a>
                             @else
-                            <span class="text-muted">No logo available</span>
+                            <span class="text-muted">@lang('message.No logo available')</span>
                             @endif
                         </div>
 
@@ -309,10 +309,10 @@
                             <div class="mt-auto">  <!-- Pushes the following content to bottom -->
                                 <div class="d-flex flex-wrap gap-3 align-items-center">
                                     <div class="ending-date">
-                                        <i class="far fa-clock"></i> Expires: {{ \Carbon\Carbon::parse($coupon->ending_date)->format('M d, Y') }}
+                                        <i class="far fa-clock"></i> @lang('message.Expires') {{ \Carbon\Carbon::parse($coupon->ending_date)->format('M d, Y') }}
                                     </div>
                                     <div class="usage-count">
-                                        <i class="fas fa-users"></i> Used {{ $coupon->clicks }} times
+                                        <i class="fas fa-users"></i> @lang('welcome.used') {{ $coupon->clicks }} times
                                     </div>
                                 </div>
                             </div>
@@ -320,16 +320,15 @@
 
                         <div class="col-md-3 mt-md-auto mt-3 d-flex flex-column text-nowrap">  <!-- Added d-flex flex-column -->
                             @if ($coupon->code)
-                            <button class="get-code-btn" onclick="handleRevealCode(event, {{ $coupon->id }}, '{{ $coupon->code }}', '{{ $coupon->name }}', '{{ asset('uploads/stores/' . $coupon->store->image) }}', '{{ $coupon->store->destination_url }}', '{{ $coupon->store->name }}')">
-                                Get Code
+                            <button class="get-code-btn text-nowrap" onclick="handleRevealCode(event, {{ $coupon->id }}, '{{ $coupon->code }}', '{{ $coupon->name }}', '{{ asset('uploads/stores/' . $coupon->store->image) }}', '{{ $coupon->store->destination_url }}', '{{ $coupon->store->name }}')">@lang('welcome.Get Code')
                             </button>
                             @else
                             <a href="{{ $coupon->store->destination_url }}" target="_blank" class="deal-btn"  onclick="updateClickCount({{ $coupon->id }})">
-                                View Deal
+                               @lang('welcome.View Deal')
                             </a>
                             @endif
                             <a href="{{ route('store.detail', ['slug' => Str::slug($coupon->store->slug)]) }}" class="store-btn mt-auto">  <!-- Added mt-auto -->
-                                More Offers
+                                @lang('welcome.More Offers')
                             </a>
                         </div>
                     </div>

@@ -132,10 +132,14 @@
         50% {transform: rotate(45deg) scale(1.05);}
         100% {transform: rotate(45deg) scale(1);}
     }
+    .main{
+        padding: 10px;
+        margin: 10px;
+    }
   </style>
 @endpush
 @section('main')
- <main class="container ">
+ <main class="main">
         @php
         $codeCount = 0;
         $dealCount = 0;
@@ -185,7 +189,7 @@
             </div>
             <div class="position-relative h-100 d-flex flex-column justify-content-center align-items-center">
             <div class="store-logo-container mx-auto mb-3 mb-md-4" style="width: 70px; height: 70px;">
-                <img src="{{ asset('uploads/stores/' . $store->image) }}" alt="{{ $store->name }}" class="store-logo img-fluid rounded-circle shadow border-4 border-white" style="width: 70px; height: 70px; object-fit: cover;">
+                <img src="{{ asset('uploads/stores/' . $store->image) }}" alt="{{ $store->name }}" class="store-logo img-fluid rounded-circle shadow border-4 border-white" style="width: 70px; height: 70px; object-fit:contain;">
             </div>
             <h1 class="h4 h-md display-5 fw-bold mb-2 mb-md-3">
                 <i class="fas fa-store-alt me-2"></i>{{ $store->name }}
@@ -204,7 +208,7 @@
                     <i class="fas fa-star {{ $i <= 4 ? 'text-warning' : 'text-white-50' }}"></i>
                     @endfor
                 </div>
-                <span class="text-white small small-md">{{ $totalCount }} Offers</span>
+                <span class="text-white small small-md">{{ $totalCount }} @lang('message.Offers')</span>
                 </div>
             </div>
             </div>
@@ -229,7 +233,7 @@
                     <!-- Filter Buttons (Mobile First) -->
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         <a href="{{ url()->current() }}" class="btn btn-outline-danger rounded-pill">
-                            <i class="fas fa-list me-2"></i>All ({{ $totalCount }})
+                            <i class="fas fa-list me-2"></i>@lang('message.All') ({{ $totalCount }})
                         </a>
                         <a href="{{ url()->current() }}?sort=codes" class="btn btn-outline-danger rounded-pill">
                             <i class="fas fa-ticket-alt me-2"></i>@lang('message.Codes') ({{ $codeCount }})
@@ -262,7 +266,7 @@
                                               <hr>
                                                 <div class="mb-3">
                                                     <p class="small text-muted mb-1">
-                                                        <i class="fas fa-info-circle me-1"></i> Details:
+                                                        <i class="fas fa-info-circle me-1"></i> @lang('message.Details')
                                                     </p>
                                                     <p class="small">{{ $coupon->description }}</p>
                                                 </div>
@@ -286,13 +290,13 @@
                                             @if ($coupon->code)
                                                 <button class="get-code-btn "
                                                     onclick="handleRevealCode(event, {{ $coupon->id }}, '{{ $coupon->code }}', '{{ $coupon->name }}', '{{ asset('uploads/stores/' . $coupon->store->image) }}', '{{ $coupon->store->destination_url }}', '{{ $coupon->store->name }}')">
-                                                    <i class="fas fa-ticket-alt me-2"></i> Get Code
+                                                    <i class="fas fa-ticket-alt me-2"></i> @lang('welcome.Get Code')
                                                 </button>
                                             @else
                                                 <a href="{{ $coupon->store->destination_url }}" target="_blank"
                                                    class="deal-btn w-100"
                                                    onclick="updateClickCount({{ $coupon->id }})">
-                                                    <i class="fas fa-shopping-bag me-2"></i>View Deal
+                                                    <i class="fas fa-shopping-bag me-2"></i>@lang('welcome.View Deal')
                                                 </a>
                                             @endif
                                         </div>
@@ -308,7 +312,7 @@
                     <div class="mt-5 bg-white p-3 p-md-4 rounded-4 shadow-sm w-100">
                         <div class="d-flex align-items-center mb-3 mb-md-4 flex-column flex-md-row text-center text-md-start">
                             <i class="fas fa-info-circle fa-2x text-dark me-0 me-md-3 mb-2 mb-md-0"></i>
-                            <h3 class="mb-0 fs-5 fs-md-3">About {{ $store->name }}</h3>
+                            <h3 class="mb-0 fs-5 fs-md-3">@lang('nav.about') {{ $store->name }}</h3>
                         </div>
                         <div class="content-text" style="font-size: 1rem;">
                             {!! $store->content !!}
@@ -324,26 +328,26 @@
                     <!-- Store Summary -->
                     <div class="card-header bg-danger text-white py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-chart-pie me-2"></i> Store Summary
+                            <i class="fas fa-chart-pie me-2"></i> @lang('message.Store Summary')
                         </h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
                             <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                 <span class="text-muted">
-                                    <i class="fas fa-ticket-alt text-dark me-2"></i> Coupon Codes
+                                    <i class="fas fa-ticket-alt text-dark me-2"></i> Coupon @lang('message.Codes')
                                 </span>
                                 <span class="badge bg-danger rounded-pill">{{ $codeCount }}</span>
                             </li>
                             <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                 <span class="text-muted">
-                                    <i class="fas fa-percentage text-success me-2"></i> Deals
+                                    <i class="fas fa-percentage text-success me-2"></i> @lang('message.Deals')
                                 </span>
                                 <span class="badge bg-success rounded-pill">{{ $dealCount }}</span>
                             </li>
                             <li class="d-flex justify-content-between align-items-center py-2">
                                 <span class="text-muted">
-                                    <i class="fas fa-tags text-info me-2"></i> Total Offers
+                                    <i class="fas fa-tags text-info me-2"></i> @lang('message.Total Offers')
                                 </span>
                                 <span class="badge bg-info rounded-pill">{{ $totalCount }}</span>
                             </li>
@@ -353,19 +357,19 @@
                     <!-- Quick Links -->
                     <div class="card-header bg-light py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-link me-2"></i> Quick Links
+                            <i class="fas fa-link me-2"></i> @lang('nav.Quick Links')
                         </h5>
                     </div>
                     <div class="card-body">
                         <div class="d-grid gap-2">
-                            <a href="{{ $store->destination_url }}" target="_blank" class="btn btn-outline-danger text-start">
-                                <i class="fas fa-external-link-alt me-2"></i> Visit Store
+                            <a href="{{ $store->destination_url }}" target="_blank" class="btn btn-outline-danger text-start btn-sm">
+                                <i class="fas fa-external-link-alt me-2"></i> @lang('message.Visit Store')
                             </a>
-                            <a href="{{ route('stores', ['lang' => app()->getLocale()]) }}" class="btn btn-outline-secondary text-start">
-                                <i class="fas fa-store me-2"></i> All Stores
+                            <a href="{{ route('stores', ['lang' => app()->getLocale()]) }}" class="btn btn-outline-secondary text-start btn-sm">
+                                <i class="fas fa-store me-2"></i>  @lang('nav.stores')
                             </a>
                             @if($store->category)
-                                <a href="{{ route('category.detail', ['slug' => Str::slug($store->category->slug)]) }}" class="btn btn-outline-secondary text-start btn-sm"><i class="fas fa-tag me-2"></i><small class="text-nowrap">category:{{ $store->category->name }}</small></a>
+                                <a href="{{ route('category.detail', ['slug' => Str::slug($store->category->slug)]) }}" class="btn btn-outline-secondary text-start btn-sm"><i class="fas fa-tag me-2"></i><small class="text-nowrap">@lang('nav.cateories'): {{ $store->category->name }}</small></a>
                             @endif
                         </div>
                     </div>
@@ -373,7 +377,7 @@
                     <!-- Store Details -->
                     <div class="card-header bg-light py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-info-circle me-2"></i> Store Details
+                            <i class="fas fa-info-circle me-2"></i> @lang('message.Store Details')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -382,14 +386,14 @@
                         </p>
                         @if($store->user)
                             <p class="small text-muted mb-0">
-                                <i class="fas fa-user-plus me-2"></i> Added by: {{ $store->user->name }}
+                                <i class="fas fa-user-plus me-2"></i> @lang('message.Added by'):{{ $store->user->name }}
                             </p>
                         @endif
                     </div>
                         <!-- Store Details -->
                     <div class="card-header bg-light py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-info-circle me-2"></i> About Store
+                            <i class="fas fa-info-circle me-2"></i>@lang('message.About Store')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -400,7 +404,7 @@
                     <!-- Related Stores -->
                     <div class="card-header bg-light py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-store-alt me-2"></i> Related Stores
+                            <i class="fas fa-store-alt me-2"></i> @lang('message.Related Stores')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -428,10 +432,10 @@
                             </p>
                         @endif
                     </div>
-                                        <!-- Related Stores -->
+                     <!-- Related Stores -->
                     <div class="card-header bg-light py-3">
                         <h5 class="mb-0">
-                            <i class="fas fa-store-alt me-2"></i> store Blogs
+                            <i class="fas fa-store-alt me-2"></i> @lang('message.Store Blogs')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -455,7 +459,7 @@
                             </ul>
                         @else
                             <p class="small text-muted mb-0">
-                                <i class="fas fa-info-circle me-2"></i> No related stores found.
+                                <i class="fas fa-info-circle me-2"></i> @lang('message.No related stores found.')
                             </p>
                         @endif
                     </div>

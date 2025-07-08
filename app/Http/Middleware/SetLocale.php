@@ -5,9 +5,10 @@ namespace App\Http\Middleware;
 use App\Models\Language;
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\App;
-class Localization
+use Symfony\Component\HttpFoundation\Response;
+
+class SetLocale
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,7 @@ class Localization
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = $request->route('lang');
+          $locale = $request->route('lang');
 
         // Define the available locales in your application
         // Fetch available locales from the Language model
@@ -29,6 +30,7 @@ class Localization
             App::setLocale('en'); // Set a default locale if needed
         }
 
+        return $next($request);
         return $next($request);
     }
 }

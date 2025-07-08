@@ -1,7 +1,7 @@
 
 <header class="sticky-top" id="header" >
 
-    <nav class="navbar navbar-top">
+    <nav class="navbar navbar-top align-items-center">
     <div class="container">
         <div class="row align-items-center w-100 g-3">
         <!-- Logo -->
@@ -13,12 +13,13 @@
 
         <!-- Search Box -->
         <div class="col-12 col-md-6 order-1 order-md-0 mt-3 mt-md-0">
-            <form class="d-flex search-box">
-            <input class="form-control search-input" type="search" placeholder="Search stores for coupons, deals..." aria-label="Search">
+            <form class="d-flex search-box" action="{{ route('search') }}" method="GET">
+            <input class="form-control search-input" type="search" name="query" id="searchInput" placeholder="@lang('nav.Search here')" aria-label="Search">
             <button class=" search-button " type="submit">
                 <i class="bi bi-search me-1"></i>
             </button>
             </form>
+
         </div>
 
         <!-- Language Dropdown -->
@@ -44,7 +45,7 @@
     </div>
     </nav>
     <!-- Main Navbar (Menu Links) -->
-    <nav class="navbar navbar-expand-lg navbar-main shadow">
+    <nav class="navbar navbar-expand-lg navbar-main shadow text-uppercase">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -53,52 +54,58 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active" href="{{ url(app()->getlocale().'/') }}">
-                    <i class="bi bi-house-door me-1"></i> HOME
+                    <i class="bi bi-house-door me-1"></i> @lang('nav.home')
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('stores', ['lang' => app()->getLocale()]) }}">
-                    <i class="bi bi-shop me-1"></i> ALL STORES
+                    <i class="bi bi-shop me-1"></i>  @lang('nav.stores')
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('category', ['lang' => app()->getLocale()]) }}">
-                    <i class="bi bi-grid-3x3-gap-fill me-1"></i> CATEGORIES
+                    <i class="bi bi-grid-3x3-gap-fill me-1"></i>@lang('nav.cateories')
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('coupons' ,['lang'=> app()->getlocale()]) }}">
-                    <i class="bi bi-ticket-perforated me-1"></i> COUPONS
+                    <i class="bi bi-ticket-perforated me-1"></i> @lang('nav.Coupons')
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('deals' ,['lang'=> app()->getlocale()]) }}">
-                    <i class="bi bi-tags me-1"></i> DEALS
+                    <i class="bi bi-tags me-1"></i> @lang('nav.deal')
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('blog' ,['lang'=> app()->getlocale()]) }}">
-                    <i class="bi bi-journal-text me-1"></i> BLOG
+                    <i class="bi bi-journal-text me-1"></i> @lang('nav.blogs')
                 </a>
             </li>
         </ul>
 
         <div class="d-flex gap-2">
-            @auth
-                <div class="icon-text">
-                    <i class="bi bi-speedometer2"></i>
-                    <a href="{{ route('dashboard') }}" class="text-decoration-none">DASHBOARD</a>
-                </div>
+        @auth
+            <div class="icon-text">
+                <i class="bi bi-speedometer2"></i>
+                @if(auth()->user()->role === 'admin')
+                    <a href="{{ route('admin.dashboard') }}" class="text-decoration-none">@lang('nav.Dashboard')</a>
+                @elseif(auth()->user()->role === 'employee')
+                    <a href="{{ route('employee.dashboard') }}" class="text-decoration-none">@lang('nav.Dashboard')</a>
                 @else
-                    <div class="icon-text">
-                    <i class="bi bi-power"></i>
-                    <a href="{{ route('login') }}" class="text-decoration-none">LOGIN</a>
-                </div>
-                <div class="icon-text">
-                    <i class="bi bi-person-plus"></i>
-                    <a href="{{ route('register') }}" class="text-decoration-none">REGISTER</a>
-                </div>
-            @endauth
+                    <a href="{{ route('dashboard') }}" class="text-decoration-none">@lang('nav.Dashboard')</a>
+                @endif
+            </div>
+        @else
+            <div class="icon-text">
+                <i class="bi bi-power"></i>
+                <a href="{{ route('login') }}" class="text-decoration-none">@lang('nav.Login')</a>
+            </div>
+            <div class="icon-text">
+                <i class="bi bi-person-plus"></i>
+                <a href="{{ route('register') }}" class="text-decoration-none">@lang('nav.register')</a>
+            </div>
+        @endauth
         </div>
 
         </div>

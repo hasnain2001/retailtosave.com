@@ -137,7 +137,7 @@
                                     </div>
                                          <div class="mb-3">
                                         <label for="store_id" class="form-label">add in store <span class="text-danger">*</span></label>
-                                        <select name="store_id" id="store_id" class="form-select" required>
+                                        <select name="store_id" id="store_id" class="form-select" >
                                             <option value="" disabled selected>-- Select store --</option>
                                             @foreach ($stores as $store)
                                                 <option value="{{ $store->id }}" {{ old('store_id') == $store->id ? 'selected' : '' }}>

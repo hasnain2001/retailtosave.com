@@ -6,18 +6,17 @@
 @section('main')
     <div class="container py-5">
         <!-- Breadcrumb Navigation -->
-        <nav aria-label="breadcrumb" class="mb-4">
+        <nav aria-label="breadcrumb " class="mb-4">
             <ol class="breadcrumb bg-light rounded px-3 py-2 mb-0 align-items-center">
             <li class="breadcrumb-item">
-                <a href="{{ url('/') }}" class="text-decoration-none text-primary fw-semibold">
-                <i class="fas fa-home me-1"></i>Home
+                <a href="{{ url(app()->getlocale().'/') }}" class="text-decoration-none text-primary fw-semibold">
+                <i class="fas fa-home me-1"></i>@lang('nav.home')
                 </a>
             </li>
             <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
                 <span class="mx-2 text-muted">
                 <i class="fas fa-chevron-right"></i>
-                </span>
-                @lang('nav.stores')
+                </span>@lang('nav.stores')
             </li>
             </ol>
         </nav>
@@ -61,7 +60,7 @@
                 <div class="col-12">
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                         <i class="fas fa-exclamation-triangle me-2"></i>
-                        <div>No stores found. Please check back later.</div>
+                        <div>@lang('message.No stores found. Please check back later.')</div>
                     </div>
                 </div>
             @endforelse

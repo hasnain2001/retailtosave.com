@@ -12,7 +12,7 @@
             <ol class="breadcrumb bg-white p-3 rounded shadow-sm">
                 <li class="breadcrumb-item">
                     <a href="/" class="text-primary text-decoration-none fw-semibold">
-                        <i class="fas fa-home me-1"></i>Home
+                        <i class="fas fa-home me-1"></i>@lang('nav.home')
                     </a>
                 </li>
                 <li class="breadcrumb-item">
@@ -61,7 +61,7 @@
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-white">
                         <h5 class="card-title text-dark fw-semibold mb-0">
-                            <i class="fas fa-store me-2 text-primary"></i>Related Stores
+                            <i class="fas fa-store me-2 text-primary"></i>@lang('message.Related Stores')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -86,7 +86,7 @@
                                 </li>
                             @empty
                                 <li class="list-group-item text-muted text-center border-0">
-                                    No related stores found.
+                                   @lang('message.No related stores found.')
                                 </li>
                             @endforelse
                         </ul>
@@ -95,7 +95,7 @@
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-header bg-white">
                         <h5 class="card-title text-dark fw-semibold mb-0">
-                            <i class="fas fa-blog me-2 text-primary"></i>Related Blogs
+                            <i class="fas fa-blog me-2 text-primary"></i>@lang('message.related blogs')
                         </h5>
                     </div>
                     <div class="card-body">
@@ -120,7 +120,7 @@
                                 </li>
                             @empty
                                 <li class="list-group-item text-muted text-center border-0">
-                                    No related blogs found.
+                                @lang('message.No related blogs found.')
                                 </li>
                             @endforelse
                         </ul>

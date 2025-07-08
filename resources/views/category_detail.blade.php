@@ -75,104 +75,101 @@
 @endpush
 @section('main')
 
-<div class="container mt-4">
-    <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb bg-light p-2 rounded">
-            <li class="breadcrumb-item">
-                <a href="/" class="text-decoration-none text-primary fw-semibold">Home</a>
-            </li>
-            <li class="breadcrumb-item active fw-bold" aria-current="page">{{ $category->name }}</li>
-        </ol>
-    </nav>
+    <div class="container mt-4">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb bg-light p-2 rounded">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url(app()->getlocale().'/') }}" class="text-decoration-none text-primary fw-semibold">@lang('nav.home')</a>
+                    </li>
+                    <li class="breadcrumb-item active fw-bold" aria-current="page">{{ $category->name }}</li>
+                </ol>
+            </nav>
 
-    <div class="category-header text-center">
-        @if ($category->image)
-            <div class="overlay">
-                <h1 class="text-uppercase">{{ $category->name }}</h1>
-            </div>
-        @else
-            <div class="fallback-image d-flex flex-column align-items-center justify-content-center">
-                <i class="fas fa-image fa-3x text-muted"></i>
-                <p class="text-muted">No image available</p>
-            </div>
-        @endif
-    </div>
-
-    <p class="h5 mt-4">Total Stores: <span class="fw-bold">{{ $stores->count() }}</span></p>
-
-<section>
-
-    <div class="row card-list g-4 mt-3">
-        @forelse ($stores as $store)
-            <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                {{-- @php
-                    $language = $store->language ? $store->language->code : 'en';
-                    $storeSlug = Str::slug($store->slug);
-                    $storeurl = $store->slug
-                        ? ($language === 'en'
-                            ? route('store_details', ['slug' => $storeSlug])
-                            : route('store_details.withLang', ['lang' => $language, 'slug' => $storeSlug]))
-                        : '#';
-                @endphp --}}
-                @php
-                $storeurl = $store->slug
-                  ? route('store.detail', ['slug' => Str::slug($store->slug)])
-                  : '#';
-                @endphp
-                <a href="{{ $storeurl }}" class="text-decoration-none">
-                    <div class="card shadow-sm text-center p-2">
-                        <img src="{{ $store->image ? asset('uploads/stores/' . $store->image) : asset('front/assets/images/no-image-found.jpg') }}"
-                             loading="lazy"
-                             alt="{{ $store->name }}">
-                        <h5 class="card-title">{{ $store->name ?: "Title not found" }}</h5>
+            <div class="category-header text-center">
+                @if ($category->image)
+                    <div class="overlay">
+                        <h1 class="text-uppercase">{{ $category->name }}</h1>
                     </div>
-                </a>
+                @else
+                    <div class="fallback-image d-flex flex-column align-items-center justify-content-center">
+                        <i class="fas fa-image fa-3x text-muted"></i>
+                        <p class="text-muted">@lang('message.No logo available')</p>
+                    </div>
+                @endif
             </div>
-        @empty
-            <div class="col-12">
-                <div class="alert alert-warning text-center" role="alert">
-                    No stores found in this category!
-                    Explore new
-                    <a href="{{ route('stores') }}" class=" get text-decoration-none fw-bold"> stores</a>
+
+            <p class="h5 mt-4">@lang('message.total store') <span class="fw-bold">{{ $stores->count() }}</span></p>
+
+        <section>
+            <div class="row card-list g-4 mt-3">
+                @forelse ($stores as $store)
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                        {{-- @php
+                            $language = $store->language ? $store->language->code : 'en';
+                            $storeSlug = Str::slug($store->slug);
+                            $storeurl = $store->slug
+                                ? ($language === 'en'
+                                    ? route('store_details', ['slug' => $storeSlug])
+                                    : route('store_details.withLang', ['lang' => $language, 'slug' => $storeSlug]))
+                                : '#';
+                        @endphp --}}
+                        @php
+                        $storeurl = $store->slug
+                        ? route('store.detail', ['slug' => Str::slug($store->slug)])
+                        : '#';
+                        @endphp
+                        <a href="{{ $storeurl }}" class="text-decoration-none">
+                            <div class="card shadow-sm text-center p-2">
+                                <img src="{{ $store->image ? asset('uploads/stores/' . $store->image) : asset('front/assets/images/no-image-found.jpg') }}"
+                                    loading="lazy"
+                                    alt="{{ $store->name }}">
+                                <h5 class="card-title">{{ $store->name ?: "Title not found" }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center" role="alert">
+                        @lang('message.No stores found in this category!Explore new')
+                            <a href="{{ route('stores', ['lang' => app()->getLocale()]) }}" class=" get text-decoration-none fw-bold"> @lang('nav.stores')</a>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+
+        </section>
+        <section>
+            <div class="row card-list g-4 mt-3">
+                <div class="col-md-8">
+                    <section class="blog">
+                    <h2>@lang('message.Shopping Hacks & Savings Tips & Tricks')</h2>
+                    <div class="row">
+                        @foreach ($relatedblogs as $blog)
+                        @php
+                        $blogurl = $blog->slug
+                            ? route('blog.detail', ['slug' => Str::slug($blog->slug)])
+                            : '#';
+                        @endphp
+                        <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm h-100 d-flex flex-column">
+                            <a href="{{ $blogurl }}">
+                            <img src="{{ asset('uploads/blogs/' . $blog->image) }}" class="card-img-top" alt="Blog Post Image">
+                        </a>
+                            <div class="card-body d-flex flex-column">
+                            <div class="blog-text mb-3">
+                                <h5 class="blog-title">{{ $blog->title }}</h5>
+                            </div>
+                            <div class="mt-auto">
+                                <a href="{{ $blogurl }}" class="btn btn-danger rounded-pill w-100">@lang('welcome.Read More')</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    </section>
                 </div>
             </div>
-        @endforelse
+        </section>
     </div>
-
-</section>
-    <section>
-        <div class="row card-list g-4 mt-3">
-            <div class="col-md-8">
-                <section class="blog">
-                  <h1>Shopping Hacks & Savings Tips & Tricks</h1>
-                  <div class="row">
-                    @foreach ($relatedblogs as $blog)
-                    @php
-                    $blogurl = $blog->slug
-                        ? route('blog.detail', ['slug' => Str::slug($blog->slug)])
-                        : '#';
-                    @endphp
-                    <div class="col-md-6 mb-4">
-                      <div class="card shadow-sm h-100 d-flex flex-column">
-                        <a href="{{ $blogurl }}">
-                        <img src="{{ asset('uploads/blogs/' . $blog->image) }}" class="card-img-top" alt="Blog Post Image">
-                      </a>
-                        <div class="card-body d-flex flex-column">
-                          <div class="blog-text mb-3">
-                            <h5 class="blog-title">{{ $blog->title }}</h5>
-                          </div>
-                          <div class="mt-auto">
-                            <a href="{{ $blogurl }}" class="btn btn-danger rounded-pill w-100">Read More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    @endforeach
-                  </div>
-                 </section>
-              </div>
-        </div>
-    </section>
-
-</div>
 @endsection

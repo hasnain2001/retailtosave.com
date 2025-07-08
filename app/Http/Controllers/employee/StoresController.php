@@ -157,6 +157,7 @@ class StoresController extends Controller
            'slug' => 'required|string|max:255|unique:stores,slug,' . $stores->id,
            'status' => 'required|boolean',
            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+           'meta_description' => 'required|string|max:255',
            'title' => 'nullable|string|max:255',
            'meta_keyword' => 'nullable|string|max:255',
            'meta_description' => 'nullable|string|max:255',

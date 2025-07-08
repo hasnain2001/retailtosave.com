@@ -50,8 +50,8 @@
     <div class="container">
         <div class="text-center mb-5">
             <div class="store-heading">
-                <h1>Latest Discount Codes & Promo Codes From Popular Stores</h1>
-                <p> Discover our beautifully curated stores offering the best products and services</p>
+                <h1>@lang('welcome.H1')</h1>
+                <p>@lang('welcome.p1')</p>
             </div>
         </div>
 
@@ -100,7 +100,7 @@
 <section class="couponcode container py-2">
        <div class="text-center mb-5">
             <div class="coupon-heading">
-                <h2>Shop Today's Trending Coupon and Save Big</h2>
+                <h2>@lang('welcome.H2')</h2>
              </div>
         </div>
     <div class="row g-4">
@@ -109,8 +109,8 @@
             <div class="coupon-card position-relative h-100">
                 <!-- Ribbon Badges -->
                 <div class="ribbon-wrapper">
-                    <span class="ribbon verified"><i class="fas fa-check-circle me-1"></i> Verified</span>
-                    <span class="ribbon exclusive">Exclusive</span>
+                    <span class="ribbon verified"><i class="fas fa-check-circle me-1"></i> @lang('welcome.Verified')</span>
+                    <span class="ribbon exclusive">@lang('welcome.Exclusive')</span>
                 </div>
 
                 <!-- Store image -->
@@ -178,7 +178,7 @@
     <div class="container">
         <div class="text-center mb-5">
             <div class="category-heading">
-                    <h3 class="fw-bold text-dark">Popular Categories</h3>
+                    <h3 class="fw-bold text-dark">@lang('welcome.H3')</h3>
                </div>
         </div>
 
@@ -227,7 +227,7 @@
 <section class="couponcode container py-2">
            <div class="text-center mb-5">
             <div class="coupon-heading">
-                <h4>Shop Today's Trending Coupon and Save Big</h4>
+                <h4>@lang('welcome.H4')</h4>
              </div>
         </div>
     <div class="row g-4">
@@ -236,8 +236,8 @@
             <div class="coupon-card position-relative h-100">
                 <!-- Ribbon Badges -->
                 <div class="ribbon-wrapper">
-                    <span class="ribbon verified"><i class="fas fa-check-circle me-1"></i> Verified</span>
-                    <span class="ribbon exclusive">Exclusive</span>
+                    <span class="ribbon verified"><i class="fas fa-check-circle me-1"></i> @lang('welcome.Verified')</span>
+                    <span class="ribbon exclusive">@lang('welcome.Exclusive')</span>
                 </div>
 
                 <!-- Store image -->
@@ -290,8 +290,13 @@
                 <!-- Footer Stats -->
                 <div class="coupon-footer px-3 pb-2">
                     <div class="d-flex justify-content-between small">
-                        <span class="text-muted"><i class="fas fa-users me-1"></i> {{ $coupon->clicks ?? 0 }} used</span>
-                        <span class="text-success fw-bold"><i class="fas fa-bolt me-1"></i> Active</span>
+                        <span class="text-muted"><i class="fas fa-users me-1"></i> {{ $coupon->clicks ?? 0 }} @lang('welcome.used')</span>
+                        <span class="text-success fw-bold"><i class="fas fa-bolt me-1"></i> @if ($coupon->status = 1)
+                        @lang('welcome.active')
+                        @else
+                         @lang('welcome.inactive')
+                        @endif
+                    </span>
                     </div>
                 </div>
             </div>
@@ -305,10 +310,10 @@
     <div class="container">
         <div class="text-center mb-5">
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 d-inline-flex align-items-center">
-                <i class="fas fa-newspaper me-2"></i>Latest Updates
+                <i class="fas fa-newspaper me-2"></i>@lang('welcome.sp')
             </span>
-            <h2 class="fw-bold mb-3">Discover Our Latest Blogs</h2>
-            <p class="text-muted mb-0">Stay updated with our insightful articles and news</p>
+            <h2 class="fw-bold mb-3">@lang('welcome.H5')</h2>
+            <p class="text-muted mb-0">@lang('welcome.blog-p')</p>
         </div>
 
         <div class="row g-4">
@@ -343,7 +348,7 @@
 
                         <div class="d-flex align-items-center justify-content-between mt-auto">
                             <a href="{{ route('blog.detail', ['slug' => Str::slug($blog->slug)]) }}" class="btn btn-link text-primary p-0 text-decoration-none d-flex align-items-center">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
+                               @lang('welcome.Read More')<i class="fas fa-arrow-right ms-2"></i>
                             </a>
                             <div class="d-flex">
                                 <!-- Add social sharing icons if needed -->
@@ -357,7 +362,7 @@
 
         <div class="text-center mt-5">
             <a href="{{ route('blog', ['lang' => app()->getLocale()]) }}" class="btn btn-primary px-4 py-2 rounded-pill">
-                <i class="fas fa-book-open me-2"></i>View All Articles
+                <i class="fas fa-book-open me-2"></i>@lang('welcome.View All Articles')
             </a>
         </div>
     </div>
