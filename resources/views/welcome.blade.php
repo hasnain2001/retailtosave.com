@@ -78,7 +78,7 @@
                             </div>
                             <div class="card-body text-center pt-0">
                                 <a href="{{ $storeUrl }}" class=" text-decoration-none text-dark">
-                                    <span class="h6 card-title fw-bold mb-4 text-nowrap">{{ $store->name }}</span>
+                                    <small class=" text-nowrap">{{ $store->name }}</small>
                                 </a>
                                 <p class="card-text text-muted mb-3">{{ Str::limit($store->description, 100) }}</p>
                             </div>

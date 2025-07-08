@@ -1,38 +1,44 @@
 <?php
 
 return [
-'heading-1' => 'Welcome to cut2 coupon: Your Shopping Guru',
+    'heading-1' => 'Welkom bij retailtosave: Jouw Shopping Guru',
 
-'heading-2' => ' Tired of paying full price? We hear you! cut2 coupon is your trusted companion in the world of discounts, deals, promo codes, bundle offers, and invaluable money-saving tips. We are more than just a website; we empower you to be a smart and informed shopper, making your shopping sprees more fulfilling and budget-friendly.',
-'heading-3' => 'Our Vision: Empowering Smarter Shopping',
-'heading-4'=>'Our mission is clear: to provide a one-stop destination where shoppers can find a diverse range of coupons that cater to their unique needs and preferences. We believe that saving money should be effortless, exciting, and rewarding. By connecting consumers with exclusive offers and partnering with top retailers, we aim to redefine the way people approach online shopping.',
-'heading-5'=>'Unleash Your Savings Potential with cut2 coupon',
-'heading-6'=>'',
-'heading-7' => ' Discount Codes',
-'heading-8'=> ' We curate and provide a wide range of discount codes from your favorite brands and retailers.',
-'heading-9' =>'2. Deals and Promotions',
-'heading-10' => 'Discover the latest and hottest deals on cut2 coupon. Save big on everything you need and love.',
-'heading-11' => '3. Bundle Offers',
+    'heading-2' => 'Ben je het beu om altijd de volle prijs te betalen? Wij begrijpen je! retailtosave is jouw betrouwbare partner in de wereld van kortingen, deals, promotiecodes, bundelaanbiedingen en waardevolle bespaartips. Wij zijn meer dan alleen een website; we geven je de kracht om een slimme en geïnformeerde shopper te zijn, waardoor jouw winkelervaring leuker én budgetvriendelijker wordt.',
 
-'heading-12' =>'Save even more by exploring our bundle offers. Find fantastic deals on complementary products.',
-'heading-13' => '4.Product Comparisons',
-'heading-14' => 'Making informed decisions is crucial when shopping. We offer detailed product comparisons to help you choose the best option that fits your needs and budget.',
-'heading-15' => '',
-'heading-16'=>'Why Make cut2 coupon Your Shopping Ally?',
-'heading-17' => '',
-'Access promotions you wont find anywhere else' =>'Trustworthy Information',
-'Personalized Recommendations:' => 'Diverse Range of Deals',
-'Tailored deals based on your preferences.' =>'Tailored deals based on your preferences.',
-'Real-Time Savings:'=>'Real-Time Savings:',
-'Stay ahead with the latest and most up-to-date coupons.'=> 'Stay ahead with the latest and most up-to-date coupons.',
-'Community Engagement:'=> 'Community and Support',
-' Connect with fellow savers, share tips, and celebrate your successes.'=>' Connect with fellow savers, share tips, and celebrate your successes.',
-'heading-18' =>'',
-'heading-19' => '',
-'heading-20' => '',
-'heading-21'  => '',
-'heading-22' => '',
+    'heading-3' => 'Onze Visie: Slimmer Winkelen Mogelijk Maken',
 
+    'heading-4' => 'Onze missie is duidelijk: een centrale plek bieden waar shoppers een breed scala aan kortingscodes kunnen vinden, afgestemd op hun unieke behoeften en voorkeuren. Wij geloven dat geld besparen moeiteloos, spannend en lonend moet zijn. Door consumenten te verbinden met exclusieve aanbiedingen en samen te werken met topwinkels, willen we online shoppen opnieuw definiëren.',
 
+    'heading-5' => 'Ontgrendel Je Besparingspotentieel met retailtosave',
+    'heading-6' => '',
 
+    'heading-7' => 'Kortingscodes',
+    'heading-8' => 'We verzamelen en bieden een breed scala aan kortingscodes van jouw favoriete merken en winkels.',
+
+    'heading-9' => '2. Deals en Promoties',
+    'heading-10' => 'Ontdek de nieuwste en populairste deals op retailtosave. Bespaar groots op alles wat je nodig hebt en waar je van houdt.',
+
+    'heading-11' => '3. Bundelaanbiedingen',
+    'heading-12' => 'Bespaar nog meer met onze bundelaanbiedingen. Vind fantastische deals op bijpassende producten.',
+
+    'heading-13' => '4. Productvergelijkingen',
+    'heading-14' => 'Goed geïnformeerde keuzes maken is cruciaal bij het winkelen. Wij bieden gedetailleerde productvergelijkingen zodat je de beste optie kunt kiezen die past bij jouw behoeften en budget.',
+
+    'heading-15' => '',
+    'heading-16' => 'Waarom retailtosave jouw winkelmaatje zou moeten zijn?',
+    'heading-17' => '',
+
+    'Access promotions you wont find anywhere else' => 'Betrouwbare informatie',
+    'Personalized Recommendations:' => 'Diverse deals op maat',
+    'Tailored deals based on your preferences.' => 'Aangepaste deals op basis van jouw voorkeuren.',
+    'Real-Time Savings:' => 'Besparingen in real-time:',
+    'Stay ahead with the latest and most up-to-date coupons.' => 'Blijf voorop met de nieuwste en meest actuele kortingscodes.',
+    'Community Engagement:' => 'Community en ondersteuning',
+    ' Connect with fellow savers, share tips, and celebrate your successes.' => 'Verbind met andere bespaarders, deel tips en vier je successen.',
+
+    'heading-18' =>'',
+    'heading-19' => '',
+    'heading-20' => '',
+    'heading-21'  => '',
+    'heading-22' => '',
 ];

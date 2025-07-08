@@ -4,23 +4,26 @@ return [
     'home' => 'Startseite',
     'contact' => 'Kontakt',
     'blogs' => 'Blogs',
-    'stores' => 'Geschäfte',
+    'stores' => 'Shops',
     'cateories' => 'Kategorien',
+    'Coupons' => 'Gutscheine',
+    'deal' => 'Angebot',
     'Popular-Categories' => 'Beliebte Kategorien',
     'Featured' => 'Empfohlen',
     'New-Arrivals' => 'Neuheiten',
     'Special-Offers' => 'Sonderangebote',
     'Dashboard' => 'Dashboard',
     'Login' => 'Anmelden',
+    'register' => 'Registrieren',
+    'Search here' => 'Shops nach Gutscheinen und Angeboten durchsuchen...',
 
     // footer //
-    'Info Links' => 'Informationen',
+    'support' => 'Support',
     'about' => 'Über uns',
-    'Privacy Policy' => 'Datenschutzrichtlinie',
+    'Privacy Policy' => 'Datenschutzerklärung',
     'Terms of Service' => 'Nutzungsbedingungen',
     'Imprint' => 'Impressum',
     'Quick Links' => 'Schnellzugriff',
-    'Coupons' => 'Gutscheine',
-    'Company Name. All rights reserved' => 'Firmenname. Alle Rechte vorbehalten',
-    'Search here' => 'Hier suchen'
+    'Company Name. All rights reserved' => 'retailtosave.com. Alle Rechte vorbehalten',
+    'about-f' => 'Entdecken Sie Top-Gutscheine, exklusive Angebote und Rabatte von Ihren Lieblingsshops.'
 ];

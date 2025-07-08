@@ -2,25 +2,28 @@
 return [
     // nav //
     'home' => 'Inicio',
-    'contact' => 'Contacto',
+    'contact' => 'Contáctanos',
     'blogs' => 'Blogs',
     'stores' => 'Tiendas',
-    'cateories' => 'Categorías',
+    'cateories' => 'Categorías', // Note: typo in key; should be 'categories' if intentional.
+    'Coupons' => 'Cupones',
+    'deal' => 'Oferta',
     'Popular-Categories' => 'Categorías Populares',
-    'Featured' => 'Destacados',
+    'Featured' => 'Destacado',
     'New-Arrivals' => 'Novedades',
     'Special-Offers' => 'Ofertas Especiales',
     'Dashboard' => 'Panel de Control',
     'Login' => 'Iniciar Sesión',
+    'register' => 'Registrarse',
+    'Search here' => 'Busca tiendas, cupones, ofertas...',
 
-    //footer//
-    'Info Links' => 'Enlaces de Información',
+    // footer //
+    'support' => 'Soporte',
     'about' => 'Acerca de',
     'Privacy Policy' => 'Política de Privacidad',
-    'Terms of Service' => 'Términos de Servicio',
+    'Terms of Service' => 'Términos del Servicio',
     'Imprint' => 'Aviso Legal',
     'Quick Links' => 'Enlaces Rápidos',
-    'Coupons' => 'Cupones',
-    'Company Name. All rights reserved' => 'Nombre de la Empresa. Todos los derechos reservados',
-    'Search here' => 'Buscar aquí'
+    'Company Name. All rights reserved' => 'retailtosave.com. Todos los derechos reservados',
+    'about-f' => 'Descubre los mejores cupones, ofertas exclusivas y descuentos de tus tiendas en línea favoritas.',
 ];

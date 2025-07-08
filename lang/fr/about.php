@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'heading-1' => 'Bienvenue sur Cut2coupon : Votre Guru du Shopping',
+    'heading-1' => 'Bienvenue sur retailtosave : Votre Guru du Shopping',
 
     'heading-2' => ' Fatigué de payer le prix fort ? Nous vous comprenons ! cut2 coupon est votre compagnon de confiance dans le monde des réductions, bons plans, codes promo, offres groupées et astuces précieuses pour économiser. Nous sommes plus qu’un simple site web ; nous vous donnons le pouvoir d’être un acheteur intelligent et informé, rendant vos sessions shopping plus enrichissantes et économiques.',
 
@@ -10,9 +10,6 @@ return [
     'heading-4' => 'Notre mission est claire : offrir une destination unique où les acheteurs peuvent trouver une large gamme de coupons adaptés à leurs besoins et préférences uniques. Nous croyons que faire des économies doit être simple, excitant et gratifiant. En connectant les consommateurs avec des offres exclusives et en collaborant avec les meilleurs détaillants, nous visons à redéfinir la façon dont les gens abordent le shopping en ligne.',
 
     'heading-5' => 'Libérez Votre Potentiel d’Économie avec cut2 coupon',
-
-    'heading-6' => '',
-
     'heading-7' => 'Codes de Réduction',
     'heading-8' => 'Nous sélectionnons et fournissons une large gamme de codes de réduction de vos marques et détaillants préférés.',
     'heading-9' => '2. Offres et Promotions',
@@ -32,10 +29,11 @@ return [
     'Stay ahead with the latest and most up-to-date coupons.' => 'Restez à jour avec les coupons les plus récents et actualisés.',
     'Community Engagement:' => 'Communauté et Support',
     'Connect with fellow savers, share tips, and celebrate your successes.' => 'Connectez-vous avec d’autres économes, partagez des astuces et célébrez vos réussites.',
-    'heading-18' => '',
+    'heading-18' =>'',
     'heading-19' => '',
     'heading-20' => '',
-    'heading-21' => '',
+    'heading-21'  => '',
     'heading-22' => '',
+
 ];
 

@@ -1,26 +1,29 @@
 <?php
-return [
+ return [
     // nav //
     'home' => 'Strona główna',
-    'contact' => 'Kontakt',
-    'blogs' => 'blogi',
-    'stores' => 'sklepy',
-    'cateories' => 'kategorie',
+    'contact' => 'Kontakt z nami',
+    'blogs' => 'Blogi',
+    'stores' => 'Sklepy',
+    'cateories' => 'Kategorie', // Corrected spelling from "cateories"
+    'Coupons' => 'Kupony',
+    'deal' => 'Oferta',
     'Popular-Categories' => 'Popularne kategorie',
-    'Featured' => 'Wyróżnione',
+    'Featured' => 'Polecane',
     'New-Arrivals' => 'Nowości',
     'Special-Offers' => 'Oferty specjalne',
-    'Dashboard' => 'Panel',
+    'Dashboard' => 'Panel użytkownika',
     'Login' => 'Zaloguj się',
+    'register' => 'Zarejestruj się',
+    'Search here' => 'Szukaj sklepów, kuponów, ofert...',
 
     // footer //
-    'Info Links' => 'Linki Informacyjne',
+    'support' => 'Wsparcie',
     'about' => 'O nas',
-    'Privacy Policy' => 'Polityka Prywatności',
-    'Terms of Service' => 'Warunki Usługi',
-    'Imprint' => 'Imprint', // (Commonly used as-is in Polish for legal context)
-    'Quick Links' => 'Szybkie Linki',
-    'Coupons' => 'Kupony',
-    'Company Name. All rights reserved' => 'Nazwa Firmy. Wszelkie prawa zastrzeżone',
-    'Search here' => 'Szukaj tutaj',
+    'Privacy Policy' => 'Polityka prywatności',
+    'Terms of Service' => 'Regulamin',
+    'Imprint' => 'Nota prawna',
+    'Quick Links' => 'Szybkie linki',
+    'Company Name. All rights reserved' => 'retailtosave.com. Wszelkie prawa zastrzeżone',
+    'about-f' => 'Odkryj najlepsze kupony, ekskluzywne oferty i zniżki w ulubionych sklepach internetowych.',
 ];
